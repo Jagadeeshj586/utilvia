@@ -1,0 +1,31 @@
+---
+description: Utilvia Claude editorial design system — cream, coral, dark, serif display
+alwaysApply: true
+---
+
+# Utilvia design system (Claude editorial)
+
+Source of truth: cream + coral + dark. Warm humanist AI aesthetic — not cool blue SaaS.
+
+## Color
+
+- Canvas `#faf9f5`, ink `#141413`, body `#3d3d3a`
+- Coral primary `#cc785c`, active `#a9583e`
+- Dark surfaces `#181715` / `#252320` / `#1f1e1b`
+- Amber `#e8a55a` (secondary warmth), teal `#5db8a6` (sparingly)
+- On dark: `#faf9f5` / `#a09d96`
+- Do not introduce purple, saturated blue, cyan, or neon green
+
+## Type
+
+- Display: Newsreader (Google Fonts), weight **600**, tight negative tracking. Hero 64px / 1.05 / -1.5px; mobile 32px. Italic coral accents allowed for emphasis.
+- Body/UI: Inter (StyreneB stand-in), 16px / 400 / 1.55; nav 14px / 500 / 1.4
+- Buttons: Inter 14px / 500, height 40px, padding 12×20, radius 8px
+
+## Hero atmosphere
+
+- Light cream hero (`#faf9f5`), not dark charcoal
+- Coral-dominant blurred gradient clouds + amber + tiny teal
+- Slow independent CSS transforms only; respect `prefers-reduced-motion`
+- Content z-10, gradients z-0, vignette z-1, `pointer-events: none`
+- Headline/body stay ink on cream for contrast
