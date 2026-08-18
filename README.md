@@ -25,7 +25,7 @@ Open [http://localhost:3000](http://localhost:3000). Press `⌘K` or `/` to sear
 - `npm run start` - serve the production build
 - `npm run lint` - ESLint
 
-Set `NEXT_PUBLIC_SITE_URL` for canonical URLs, sitemap, and Open Graph (defaults to `https://utilvia.app`).
+Set `NEXT_PUBLIC_SITE_URL` for canonical URLs, sitemap, and Open Graph (defaults to `https://utilvia.net`).
 
 ### Background Remover
 

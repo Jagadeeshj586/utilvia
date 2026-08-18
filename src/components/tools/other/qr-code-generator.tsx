@@ -227,7 +227,7 @@ function buildPayload(type: ContentType, fields: QrFields) {
         "VERSION:2.0",
         "PRODID:-//Utilvia//QR Generator//EN",
         "BEGIN:VEVENT",
-        `UID:${stamp}@utilvia.app`,
+        `UID:${stamp}@utilvia.net`,
         `DTSTAMP:${stamp}Z`,
         `SUMMARY:${escapeVCard(fields.eventTitle.trim())}`,
         `DTSTART:${toIcsStamp(fields.eventStart)}`,
@@ -457,7 +457,7 @@ export function QrCodeGenerator() {
           <div className="mt-4 space-y-3">
             {type === "url" ? (
               <Field label="Website URL" htmlFor="qr-url">
-                <Input id="qr-url" value={fields.url} onChange={(e) => patch({ url: e.target.value })} placeholder="https://utilvia.app" />
+                <Input id="qr-url" value={fields.url} onChange={(e) => patch({ url: e.target.value })} placeholder="https://utilvia.net" />
               </Field>
             ) : null}
             {type === "text" ? (
