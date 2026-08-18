@@ -37,3 +37,4 @@ BACKGROUND_REMOVAL_MODEL=isnet_fp16 # isnet_quint8 (fast) | isnet_fp16 | isnet (
 NEXT_PUBLIC_BACKGROUND_REMOVAL_DEVICE=cpu # cpu is most reliable; gpu if WebGPU works
 BACKGROUND_REMOVAL_API_KEY=         # Clipdrop or remove.bg key; never put this in frontend code
 ```
+# jaganajagadeesh
