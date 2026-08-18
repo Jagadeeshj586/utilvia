@@ -9,18 +9,18 @@ export function Logo({ className }: { className?: string }) {
       <Image
         src="/brand/logo-light.png"
         alt=""
-        width={140}
-        height={28}
+        width={120}
+        height={24}
         priority
-        className="h-7 w-auto dark:hidden"
+        className="h-6 w-auto dark:hidden"
       />
       <Image
         src="/brand/logo-dark.png"
         alt=""
-        width={140}
-        height={28}
+        width={120}
+        height={24}
         priority
-        className="hidden h-7 w-auto dark:block"
+        className="hidden h-6 w-auto dark:block"
       />
     </Link>
   );
