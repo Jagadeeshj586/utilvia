@@ -38,3 +38,4 @@ NEXT_PUBLIC_BACKGROUND_REMOVAL_DEVICE=cpu # cpu is most reliable; gpu if WebGPU 
 BACKGROUND_REMOVAL_API_KEY=         # Clipdrop or remove.bg key; never put this in frontend code
 ```
 # jaganajagadeesh
+# utilvia
