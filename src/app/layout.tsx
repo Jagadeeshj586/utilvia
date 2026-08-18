@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, JetBrains_Mono, Newsreader } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { Footer } from "@/components/layout/footer";
 import { Header } from "@/components/layout/header";
@@ -78,6 +79,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
             <Footer />
           </div>
           <Analytics />
+          <SpeedInsights />
           {gaId ? <GoogleAnalytics gaId={gaId} /> : null}
         </AppProviders>
       </body>
