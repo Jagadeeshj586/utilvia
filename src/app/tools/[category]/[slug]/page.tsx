@@ -27,13 +27,15 @@ export function generateMetadata({ params }: { params: Params }): Metadata {
       title: `${title} - ${SITE.name}`,
       description,
       url,
+      siteName: SITE.name,
       type: "website",
     },
     twitter: {
-      card: "summary",
+      card: "summary_large_image",
       title,
       description,
     },
+    robots: { index: true, follow: true },
   };
 }
 

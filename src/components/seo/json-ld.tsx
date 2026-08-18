@@ -1,6 +1,6 @@
 import type { ToolDefinition } from "@/lib/tools/registry";
 import { SITE } from "@/lib/site";
-import { toolHref } from "@/lib/tools/registry";
+import { getCategory, toolHref } from "@/lib/tools/registry";
 
 export function ToolJsonLd({ tool }: { tool: ToolDefinition }) {
   const url = `${SITE.url}${toolHref(tool)}`;
@@ -15,6 +15,20 @@ export function ToolJsonLd({ tool }: { tool: ToolDefinition }) {
       description: tool.longDescription,
       url,
       publisher: { "@type": "Organization", name: SITE.name, url: SITE.url },
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Home", item: SITE.url },
+        {
+          "@type": "ListItem",
+          position: 2,
+          name: getCategory(tool.category)?.label ?? "Tools",
+          item: `${SITE.url}/category/${tool.category}`,
+        },
+        { "@type": "ListItem", position: 3, name: tool.name, item: url },
+      ],
     },
     {
       "@context": "https://schema.org",
