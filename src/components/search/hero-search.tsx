@@ -4,11 +4,20 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { useRouter } from "next/navigation";
 import { Search } from "lucide-react";
-import { getAllTools, getPopularTools, getReadyTools, searchTools, toolHref, toolId } from "@/lib/tools/catalog";
-import { getToolIcon } from "@/lib/tools/icons";
+import type { ToolDefinition } from "@/lib/tools/catalog";
+import { CATEGORY_ICONS } from "@/lib/tools/category-icons";
 import { useRecentsStore } from "@/stores/recents-store";
 import { useUiStore } from "@/stores/ui-store";
 import { cn } from "@/lib/utils";
+
+type CatalogModule = typeof import("@/lib/tools/catalog");
+
+let catalogLoader: Promise<CatalogModule> | null = null;
+
+function loadCatalog() {
+  catalogLoader ??= import("@/lib/tools/catalog");
+  return catalogLoader;
+}
 
 const RESULTS_FADE_MS = 300;
 const SUGGESTION_LIMIT = 8;
@@ -26,24 +35,30 @@ export function HeroSearch({ className, tone = "light" }: { className?: string; 
   const [resultsMounted, setResultsMounted] = useState(false);
   const [resultsVisible, setResultsVisible] = useState(false);
   const [coords, setCoords] = useState({ top: 0, left: 0, width: 0 });
+  const [catalog, setCatalog] = useState<CatalogModule | null>(null);
+
+  const ensureCatalog = useCallback(() => {
+    void loadCatalog().then(setCatalog);
+  }, []);
 
   const suggested = useMemo(() => {
-    const all = getAllTools();
-    const popular = getPopularTools();
-    const fallback = popular.length ? popular : getReadyTools();
-    const recentTools = recents.map((id) => all.find((tool) => toolId(tool) === id)).filter(Boolean);
-    const merged = [];
+    if (!catalog) return [] as ToolDefinition[];
+    const all = catalog.getAllTools();
+    const popular = catalog.getPopularTools();
+    const fallback = popular.length ? popular : catalog.getReadyTools();
+    const recentTools = recents.map((id) => all.find((tool) => catalog.toolId(tool) === id)).filter(Boolean);
+    const merged: ToolDefinition[] = [];
     const seen = new Set<string>();
     for (const tool of [...recentTools, ...fallback]) {
       if (!tool) continue;
-      const id = toolId(tool);
+      const id = catalog.toolId(tool);
       if (seen.has(id)) continue;
       seen.add(id);
       merged.push(tool);
       if (merged.length >= SUGGESTION_LIMIT) break;
     }
     return merged;
-  }, [recents]);
+  }, [catalog, recents]);
 
   useEffect(() => {
     const timer = window.setTimeout(() => setDebouncedQuery(query), 120);
@@ -52,8 +67,8 @@ export function HeroSearch({ className, tone = "light" }: { className?: string; 
 
   const trimmed = debouncedQuery.trim();
   const results = useMemo(
-    () => (trimmed ? searchTools(trimmed).slice(0, SUGGESTION_LIMIT) : suggested),
-    [suggested, trimmed],
+    () => (trimmed && catalog ? catalog.searchTools(trimmed).slice(0, SUGGESTION_LIMIT) : suggested),
+    [catalog, suggested, trimmed],
   );
 
   const updatePosition = useCallback(() => {
@@ -136,7 +151,7 @@ export function HeroSearch({ className, tone = "light" }: { className?: string; 
             </li>
           ) : (
             results.map((tool) => {
-              const Icon = getToolIcon(tool.icon);
+              const Icon = CATEGORY_ICONS[tool.category];
               return (
                 <li key={`${tool.category}/${tool.slug}`}>
                   <button
@@ -147,7 +162,8 @@ export function HeroSearch({ className, tone = "light" }: { className?: string; 
                     )}
                     onMouseDown={(event) => event.preventDefault()}
                     onClick={() => {
-                      router.push(toolHref(tool));
+                      if (!catalog) return;
+                      router.push(catalog.toolHref(tool));
                       setOpen(false);
                     }}
                   >
@@ -213,16 +229,20 @@ export function HeroSearch({ className, tone = "light" }: { className?: string; 
           aria-controls="toolhub-search-suggestions"
           onChange={(event) => {
             setQuery(event.target.value);
+            ensureCatalog();
             setOpen(true);
           }}
-          onFocus={() => setOpen(true)}
+          onFocus={() => {
+            ensureCatalog();
+            setOpen(true);
+          }}
           onKeyDown={(event) => {
             if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "k") {
               event.preventDefault();
               setCommandOpen(true);
             }
-            if (event.key === "Enter" && results[0]) {
-              router.push(toolHref(results[0]));
+            if (event.key === "Enter" && catalog && results[0]) {
+              router.push(catalog.toolHref(results[0]));
               setOpen(false);
             }
             if (event.key === "Escape") setOpen(false);

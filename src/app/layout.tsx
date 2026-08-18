@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, JetBrains_Mono, Newsreader } from "next/font/google";
+import { Inter, Newsreader } from "next/font/google";
 import { Footer } from "@/components/layout/footer";
 import { Header } from "@/components/layout/header";
 import { AppProviders } from "@/components/providers/app-providers";
@@ -12,15 +12,7 @@ const display = Newsreader({
   subsets: ["latin"],
   variable: "--font-display",
   weight: ["600"],
-  style: ["normal", "italic"],
   display: "swap",
-});
-const mono = JetBrains_Mono({
-  subsets: ["latin"],
-  variable: "--font-mono",
-  weight: ["400"],
-  display: "swap",
-  preload: false,
 });
 
 export const metadata: Metadata = {
@@ -76,7 +68,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
 
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${sans.variable} ${display.variable} ${mono.variable} min-h-screen bg-canvas font-sans antialiased`}>
+      <body className={`${sans.variable} ${display.variable} min-h-screen bg-canvas font-sans antialiased`}>
         <AppProviders>
           <div className="flex min-h-screen flex-col">
             <Header />

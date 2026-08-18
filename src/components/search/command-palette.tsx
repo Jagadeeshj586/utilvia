@@ -12,7 +12,7 @@ import {
   CommandList,
 } from "@/components/ui/command";
 import { CATEGORIES, getAllTools, getPopularTools, searchTools, toolHref, toolId } from "@/lib/tools/catalog";
-import { CATEGORY_ICONS, CATEGORY_STYLES, getToolIcon } from "@/lib/tools/icons";
+import { CATEGORY_ICONS, CATEGORY_STYLES } from "@/lib/tools/category-icons";
 import { cn } from "@/lib/utils";
 import { useRecentsStore } from "@/stores/recents-store";
 import { useUiStore } from "@/stores/ui-store";
@@ -95,7 +95,7 @@ export function CommandPalette() {
           <CommandGroup heading="Favorites">
             {favoriteTools.map((tool) => {
               if (!tool) return null;
-              const Icon = getToolIcon(tool.icon);
+              const Icon = CATEGORY_ICONS[tool.category];
               const style = CATEGORY_STYLES[tool.category];
               return (
                 <CommandItem
@@ -117,7 +117,7 @@ export function CommandPalette() {
           <CommandGroup heading="Recent">
             {recentTools.map((tool) => {
               if (!tool) return null;
-              const Icon = getToolIcon(tool.icon);
+              const Icon = CATEGORY_ICONS[tool.category];
               const style = CATEGORY_STYLES[tool.category];
               return (
                 <CommandItem
@@ -137,7 +137,7 @@ export function CommandPalette() {
         ) : null}
         <CommandGroup heading={trimmed ? "Tools" : "Popular"}>
           {visibleTools.map((tool) => {
-            const Icon = getToolIcon(tool.icon);
+            const Icon = CATEGORY_ICONS[tool.category];
             const style = CATEGORY_STYLES[tool.category];
             return (
               <CommandItem

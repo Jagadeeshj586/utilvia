@@ -32,10 +32,8 @@ import {
   FileJson,
   FileOutput,
   FileSpreadsheet,
-  FileText,
   FileType,
   FileUp,
-  GraduationCap,
   FlipHorizontal,
   GitCompare,
   Globe,
@@ -84,9 +82,9 @@ import {
   Volume2,
   Wallet,
   WholeWord,
-  Wrench,
 } from "lucide-react";
-import type { CategoryId, ToolIconName } from "./catalog";
+import type { ToolIconName } from "./catalog";
+export { CATEGORY_ICONS, CATEGORY_STYLES } from "./category-icons";
 
 const ICONS: Record<ToolIconName, LucideIcon> = {
   FileDown,
@@ -176,25 +174,3 @@ const ICONS: Record<ToolIconName, LucideIcon> = {
 export function getToolIcon(name: ToolIconName): LucideIcon {
   return ICONS[name];
 }
-
-export const CATEGORY_ICONS: Record<CategoryId, LucideIcon> = {
-  pdf: FileText,
-  image: Image,
-  text: Type,
-  developer: Code,
-  finance: Calculator,
-  student: GraduationCap,
-  productivity: Timer,
-  other: Wrench,
-};
-
-export const CATEGORY_STYLES: Record<CategoryId, { iconBg: string; iconFg: string }> = {
-  pdf: { iconBg: "bg-canvas", iconFg: "text-[var(--coral)]" },
-  image: { iconBg: "bg-canvas", iconFg: "text-[var(--accent-amber)]" },
-  text: { iconBg: "bg-canvas", iconFg: "text-[var(--accent-amber)]" },
-  developer: { iconBg: "bg-canvas", iconFg: "text-ink" },
-  finance: { iconBg: "bg-canvas", iconFg: "text-[var(--accent-teal)]" },
-  student: { iconBg: "bg-canvas", iconFg: "text-[var(--accent-teal)]" },
-  productivity: { iconBg: "bg-canvas", iconFg: "text-[var(--accent-teal)]" },
-  other: { iconBg: "bg-canvas", iconFg: "text-[var(--coral)]" },
-};

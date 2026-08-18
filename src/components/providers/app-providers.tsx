@@ -1,11 +1,12 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import type { ReactNode } from "react";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { FaviconSwitcher } from "@/components/layout/favicon-switcher";
 import { CommandPaletteHost } from "@/components/search/command-palette-host";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import { Toaster } from "sonner";
+
+const Toaster = dynamic(() => import("sonner").then((module) => module.Toaster), { ssr: false });
 
 export function AppProviders({ children }: { children: ReactNode }) {
   return (
@@ -16,12 +17,10 @@ export function AppProviders({ children }: { children: ReactNode }) {
       storageKey="toolhub-theme"
       disableTransitionOnChange
     >
-      <TooltipProvider delayDuration={200}>
-        <FaviconSwitcher />
-        {children}
-        <CommandPaletteHost />
-        <Toaster richColors position="bottom-left" />
-      </TooltipProvider>
+      <FaviconSwitcher />
+      {children}
+      <CommandPaletteHost />
+      <Toaster richColors position="bottom-left" />
     </ThemeProvider>
   );
 }

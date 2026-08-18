@@ -1,9 +1,6 @@
-"use client";
-
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { getCategory, toolHref, type ToolDefinition } from "@/lib/tools/catalog";
 import { CATEGORY_STYLES, getToolIcon } from "@/lib/tools/icons";
 import { SITE } from "@/lib/site";
@@ -23,6 +20,14 @@ export function ToolCard({ tool, featured = false }: { tool: ToolDefinition; fea
           : (category?.label.replace(" Tools", "") ?? tool.category);
   const badgeVariant =
     tool.status === "soon" ? "secondary" : tool.badge === "new" ? "new" : tool.badge === "popular" ? "popular" : "outline";
+  const hint =
+    tool.status === "soon"
+      ? "This tool is on the roadmap"
+      : tool.privacy === "mixed"
+        ? "Mostly on-device"
+        : tool.category === "pdf" || tool.category === "image"
+          ? SITE.privacyNote
+          : "Runs in your browser";
 
   return (
     <Link
@@ -39,22 +44,9 @@ export function ToolCard({ tool, featured = false }: { tool: ToolDefinition; fea
         <span className={cn("flex h-10 w-10 items-center justify-center rounded-md bg-canvas", style.iconFg)}>
           <Icon className="h-5 w-5" />
         </span>
-        <Tooltip>
-          <TooltipTrigger asChild>
-            <span>
-              <Badge variant={badgeVariant}>{badgeLabel}</Badge>
-            </span>
-          </TooltipTrigger>
-          <TooltipContent>
-            {tool.status === "soon"
-              ? "This tool is on the roadmap"
-              : tool.privacy === "mixed"
-                ? "Mostly on-device"
-                : tool.category === "pdf" || tool.category === "image"
-                  ? SITE.privacyNote
-                  : "Runs in your browser"}
-          </TooltipContent>
-        </Tooltip>
+        <span title={hint}>
+          <Badge variant={badgeVariant}>{badgeLabel}</Badge>
+        </span>
       </div>
       <h3 className="font-sans text-lg font-medium tracking-normal text-ink">{tool.name}</h3>
       <p className="mt-2 flex-1 text-sm leading-[1.65] text-[var(--body)]">{tool.shortDescription}</p>

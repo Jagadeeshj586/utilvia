@@ -6,6 +6,7 @@ import { toast } from "sonner";
 import { Star } from "lucide-react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
+import { TooltipProvider } from "@/components/ui/tooltip";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { TitleTrustRow } from "@/components/layout/title-trust-row";
 import { PrivacyBadge } from "@/components/tools/privacy-badge";
@@ -35,6 +36,7 @@ export function ToolWorkspace({
   }, [id, recordVisit]);
 
   return (
+    <TooltipProvider delayDuration={200}>
     <div className="max-site py-8 sm:py-10">
       <Breadcrumbs
         items={[
@@ -122,5 +124,6 @@ export function ToolWorkspace({
         </section>
       ) : null}
     </div>
+    </TooltipProvider>
   );
 }
