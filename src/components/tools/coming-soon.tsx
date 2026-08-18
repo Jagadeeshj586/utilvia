@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Hourglass } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { EmptyState } from "@/components/ui/empty-state";
-import type { ToolDefinition } from "@/lib/tools/registry";
+import type { ToolDefinition } from "@/lib/tools/catalog";
 
 export function ComingSoon({ tool }: { tool: ToolDefinition }) {
   return (

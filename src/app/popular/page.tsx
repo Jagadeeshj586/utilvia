@@ -4,7 +4,7 @@ import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { TitleTrustRow } from "@/components/layout/title-trust-row";
 import { FeatureBanner } from "@/components/tools/feature-banner";
 import { ToolGrid } from "@/components/tools/tool-grid";
-import { getPopularTools } from "@/lib/tools/registry";
+import { getPopularTools } from "@/lib/tools/catalog";
 
 export const metadata: Metadata = {
   title: "Popular Tools",

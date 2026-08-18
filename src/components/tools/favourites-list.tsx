@@ -6,7 +6,7 @@ import { Star } from "lucide-react";
 import { ToolGrid } from "@/components/tools/tool-grid";
 import { Button } from "@/components/ui/button";
 import { EmptyState } from "@/components/ui/empty-state";
-import { getAllTools, toolId, type ToolDefinition } from "@/lib/tools/registry";
+import { getAllTools, toolId, type ToolDefinition } from "@/lib/tools/catalog";
 import { useRecentsStore } from "@/stores/recents-store";
 
 export function FavouritesList() {

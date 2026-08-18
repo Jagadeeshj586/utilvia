@@ -3,7 +3,7 @@ import { Suspense } from "react";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { ToolGridSkeleton } from "@/components/tools/tool-skeleton";
 import { ToolsExplorer } from "@/components/tools/tools-explorer";
-import { getAllTools } from "@/lib/tools/registry";
+import { getAllTools } from "@/lib/tools/catalog";
 
 export const metadata: Metadata = {
   title: "All Tools",

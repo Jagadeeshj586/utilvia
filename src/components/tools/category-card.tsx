@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import type { CategoryId } from "@/lib/tools/registry";
-import { getToolsByCategory } from "@/lib/tools/registry";
+import type { CategoryId } from "@/lib/tools/catalog";
+import { getToolsByCategory } from "@/lib/tools/catalog";
 import { CATEGORY_STYLES, getToolIcon } from "@/lib/tools/icons";
 
 export function CategoryCard({

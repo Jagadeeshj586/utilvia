@@ -2,7 +2,7 @@
 
 import dynamic from "next/dynamic";
 import { ComingSoon } from "@/components/tools/coming-soon";
-import { getTool } from "@/lib/tools/registry";
+import { getTool } from "@/lib/tools/catalog";
 
 function ToolLoading() {
   return (

@@ -86,7 +86,7 @@ import {
   WholeWord,
   Wrench,
 } from "lucide-react";
-import type { CategoryId, ToolIconName } from "./registry";
+import type { CategoryId, ToolIconName } from "./catalog";
 
 const ICONS: Record<ToolIconName, LucideIcon> = {
   FileDown,

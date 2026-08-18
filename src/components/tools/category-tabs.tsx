@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
-import { CATEGORIES } from "@/lib/tools/registry";
+import { CATEGORIES } from "@/lib/tools/catalog";
 
 const TABS = [
   { id: "all", label: "All", href: "/tools" },

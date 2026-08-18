@@ -1,8 +1,11 @@
 "use client";
 
-import { PasswordGenerator } from "@/components/tools/generators/password-generator";
-import { QrCodeGenerator } from "@/components/tools/other/qr-code-generator";
-import { SignatureMaker } from "@/components/tools/other/signature-maker";
+import dynamic from "next/dynamic";
+
+
+const PasswordGenerator = dynamic(() => import("@/components/tools/generators/password-generator").then((m) => m.PasswordGenerator), { loading: () => <div className='h-40 animate-pulse rounded-lg bg-surface-card' aria-hidden /> });
+const QrCodeGenerator = dynamic(() => import("@/components/tools/other/qr-code-generator").then((m) => m.QrCodeGenerator), { loading: () => <div className='h-40 animate-pulse rounded-lg bg-surface-card' aria-hidden /> });
+const SignatureMaker = dynamic(() => import("@/components/tools/other/signature-maker").then((m) => m.SignatureMaker), { loading: () => <div className='h-40 animate-pulse rounded-lg bg-surface-card' aria-hidden /> });
 
 function MissingTool({ slug }: { slug: string }) {
   return (

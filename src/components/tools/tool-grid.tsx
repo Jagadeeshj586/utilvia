@@ -1,6 +1,6 @@
 import { SearchX } from "lucide-react";
 import type { ReactNode } from "react";
-import type { ToolDefinition } from "@/lib/tools/registry";
+import type { ToolDefinition } from "@/lib/tools/catalog";
 import { ToolCard } from "@/components/tools/tool-card";
 import { EmptyState } from "@/components/ui/empty-state";
 

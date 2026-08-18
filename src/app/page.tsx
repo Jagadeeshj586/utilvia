@@ -7,7 +7,7 @@ import { HeroSearch } from "@/components/search/hero-search";
 import { ToolGrid } from "@/components/tools/tool-grid";
 import { Button } from "@/components/ui/button";
 import { SITE } from "@/lib/site";
-import { getAllTools, getPopularTools } from "@/lib/tools/registry";
+import { getAllTools, getPopularTools } from "@/lib/tools/catalog";
 
 const QUICK_ACTIONS = [
   { label: "Compress PDF", href: "/tools/pdf/compress-pdf" },

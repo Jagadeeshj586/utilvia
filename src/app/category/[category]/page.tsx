@@ -5,7 +5,7 @@ import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { FeatureBanner } from "@/components/tools/feature-banner";
 import { ToolGridSkeleton } from "@/components/tools/tool-skeleton";
 import { ToolsExplorer } from "@/components/tools/tools-explorer";
-import { CATEGORIES, getCategory, getToolsByCategory } from "@/lib/tools/registry";
+import { CATEGORIES, getCategory, getToolsByCategory } from "@/lib/tools/catalog";
 
 type Params = { category: string };
 

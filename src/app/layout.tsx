@@ -1,22 +1,27 @@
 import type { Metadata } from "next";
 import { Inter, JetBrains_Mono, Newsreader } from "next/font/google";
-import { Analytics } from "@vercel/analytics/react";
-import { SpeedInsights } from "@vercel/speed-insights/next";
-import { GoogleAnalytics } from "@next/third-parties/google";
 import { Footer } from "@/components/layout/footer";
 import { Header } from "@/components/layout/header";
 import { AppProviders } from "@/components/providers/app-providers";
+import { DeferredMetrics } from "@/components/analytics/deferred-metrics";
 import { SITE } from "@/lib/site";
 import "./globals.css";
 
-const sans = Inter({ subsets: ["latin"], variable: "--font-sans", weight: ["400", "500"] });
+const sans = Inter({ subsets: ["latin"], variable: "--font-sans", weight: ["400", "500"], display: "swap" });
 const display = Newsreader({
   subsets: ["latin"],
   variable: "--font-display",
-  weight: ["400", "500", "600", "700"],
+  weight: ["600"],
   style: ["normal", "italic"],
+  display: "swap",
 });
-const mono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-mono", weight: ["400", "500"] });
+const mono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-mono",
+  weight: ["400"],
+  display: "swap",
+  preload: false,
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
@@ -78,9 +83,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
             <main className="flex-1">{children}</main>
             <Footer />
           </div>
-          <Analytics />
-          <SpeedInsights />
-          {gaId ? <GoogleAnalytics gaId={gaId} /> : null}
+          <DeferredMetrics gaId={gaId} />
         </AppProviders>
       </body>
     </html>

@@ -1,20 +1,22 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { useMemo, useState } from "react";
 import { toast } from "sonner";
-import { CaseConverter } from "@/components/tools/text/case-converter";
-import { CharacterCounter } from "@/components/tools/text/character-counter";
-import { MarkdownTableGenerator } from "@/components/tools/text/markdown-table-generator";
-import { MarkdownToHtmlTool } from "@/components/tools/text/markdown-to-html";
-import { TextToSpeechTool } from "@/components/tools/text/text-to-speech";
-import { TextDiffCheckerTool } from "@/components/tools/text/text-diff-checker";
-import { WordCounter } from "@/components/tools/text/word-counter";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { Textarea } from "@/components/ui/textarea";
 import { downloadText } from "@/lib/utils";
+
+const CaseConverter = dynamic(() => import("@/components/tools/text/case-converter").then((m) => m.CaseConverter), { loading: () => <div className='h-40 animate-pulse rounded-lg bg-surface-card' aria-hidden /> });
+const CharacterCounter = dynamic(() => import("@/components/tools/text/character-counter").then((m) => m.CharacterCounter), { loading: () => <div className='h-40 animate-pulse rounded-lg bg-surface-card' aria-hidden /> });
+const MarkdownTableGenerator = dynamic(() => import("@/components/tools/text/markdown-table-generator").then((m) => m.MarkdownTableGenerator), { loading: () => <div className='h-40 animate-pulse rounded-lg bg-surface-card' aria-hidden /> });
+const MarkdownToHtmlTool = dynamic(() => import("@/components/tools/text/markdown-to-html").then((m) => m.MarkdownToHtmlTool), { loading: () => <div className='h-40 animate-pulse rounded-lg bg-surface-card' aria-hidden /> });
+const TextToSpeechTool = dynamic(() => import("@/components/tools/text/text-to-speech").then((m) => m.TextToSpeechTool), { loading: () => <div className='h-40 animate-pulse rounded-lg bg-surface-card' aria-hidden /> });
+const TextDiffCheckerTool = dynamic(() => import("@/components/tools/text/text-diff-checker").then((m) => m.TextDiffCheckerTool), { loading: () => <div className='h-40 animate-pulse rounded-lg bg-surface-card' aria-hidden /> });
+const WordCounter = dynamic(() => import("@/components/tools/text/word-counter").then((m) => m.WordCounter), { loading: () => <div className='h-40 animate-pulse rounded-lg bg-surface-card' aria-hidden /> });
 
 const LOREM = [
   "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",

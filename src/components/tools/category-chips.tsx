@@ -1,6 +1,6 @@
 "use client";
 
-import { CATEGORIES, getToolsByCategory } from "@/lib/tools/registry";
+import { CATEGORIES, getToolsByCategory } from "@/lib/tools/catalog";
 import { cn } from "@/lib/utils";
 
 export function CategoryChips({

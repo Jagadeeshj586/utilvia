@@ -1,19 +1,19 @@
 "use client";
 
-import { CgpaCalculator } from "@/components/tools/calculators/cgpa-calculator";
-import { CompoundInterestCalculator } from "@/components/tools/calculators/compound-interest-calculator";
-import { FormulaCalculator } from "@/components/tools/shared/formula-calculator";
-import { CalorieDeficitCalculatorTool } from "@/components/tools/student/calorie-deficit-calculator";
-import { NumberToWordsTool } from "@/components/tools/student/number-to-words";
-import { TimeZoneConverterTool } from "@/components/tools/student/time-zone-converter";
-import { GpaCalculatorTool } from "@/components/tools/student/gpa-calculator";
-import { DaysBetweenDatesTool } from "@/components/tools/student/days-between-dates";
-import { LeapYearCheckerTool } from "@/components/tools/student/leap-year-checker";
-import {
-  BmiCalculator,
-} from "@/components/tools/student/student-suite";
-import { UnitConverter } from "@/components/tools/student/unit-converter";
+import dynamic from "next/dynamic";
 import { STUDENT_CONFIGS } from "@/lib/calculators/student-configs";
+
+const CgpaCalculator = dynamic(() => import("@/components/tools/calculators/cgpa-calculator").then((m) => m.CgpaCalculator), { loading: () => <div className='h-40 animate-pulse rounded-lg bg-surface-card' aria-hidden /> });
+const CompoundInterestCalculator = dynamic(() => import("@/components/tools/calculators/compound-interest-calculator").then((m) => m.CompoundInterestCalculator), { loading: () => <div className='h-40 animate-pulse rounded-lg bg-surface-card' aria-hidden /> });
+const FormulaCalculator = dynamic(() => import("@/components/tools/shared/formula-calculator").then((m) => m.FormulaCalculator), { loading: () => <div className='h-40 animate-pulse rounded-lg bg-surface-card' aria-hidden /> });
+const CalorieDeficitCalculatorTool = dynamic(() => import("@/components/tools/student/calorie-deficit-calculator").then((m) => m.CalorieDeficitCalculatorTool), { loading: () => <div className='h-40 animate-pulse rounded-lg bg-surface-card' aria-hidden /> });
+const NumberToWordsTool = dynamic(() => import("@/components/tools/student/number-to-words").then((m) => m.NumberToWordsTool), { loading: () => <div className='h-40 animate-pulse rounded-lg bg-surface-card' aria-hidden /> });
+const TimeZoneConverterTool = dynamic(() => import("@/components/tools/student/time-zone-converter").then((m) => m.TimeZoneConverterTool), { loading: () => <div className='h-40 animate-pulse rounded-lg bg-surface-card' aria-hidden /> });
+const GpaCalculatorTool = dynamic(() => import("@/components/tools/student/gpa-calculator").then((m) => m.GpaCalculatorTool), { loading: () => <div className='h-40 animate-pulse rounded-lg bg-surface-card' aria-hidden /> });
+const DaysBetweenDatesTool = dynamic(() => import("@/components/tools/student/days-between-dates").then((m) => m.DaysBetweenDatesTool), { loading: () => <div className='h-40 animate-pulse rounded-lg bg-surface-card' aria-hidden /> });
+const LeapYearCheckerTool = dynamic(() => import("@/components/tools/student/leap-year-checker").then((m) => m.LeapYearCheckerTool), { loading: () => <div className='h-40 animate-pulse rounded-lg bg-surface-card' aria-hidden /> });
+const BmiCalculator = dynamic(() => import("@/components/tools/student/student-suite").then((m) => m.BmiCalculator), { loading: () => <div className='h-40 animate-pulse rounded-lg bg-surface-card' aria-hidden /> });
+const UnitConverter = dynamic(() => import("@/components/tools/student/unit-converter").then((m) => m.UnitConverter), { loading: () => <div className='h-40 animate-pulse rounded-lg bg-surface-card' aria-hidden /> });
 
 export function StudentRouter({ slug }: { slug: string }) {
   switch (slug) {

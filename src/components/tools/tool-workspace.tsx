@@ -10,7 +10,7 @@ import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { TitleTrustRow } from "@/components/layout/title-trust-row";
 import { PrivacyBadge } from "@/components/tools/privacy-badge";
 import { ToolCard } from "@/components/tools/tool-card";
-import { getCategory, getRelatedTools, toolId, type ToolDefinition } from "@/lib/tools/registry";
+import { getCategory, getRelatedTools, toolId, type ToolDefinition } from "@/lib/tools/catalog";
 import { CATEGORY_STYLES, getToolIcon } from "@/lib/tools/icons";
 import { useRecentsStore } from "@/stores/recents-store";
 
@@ -83,10 +83,10 @@ export function ToolWorkspace({
       <section className="mt-10">
         <h2 className="font-display text-[22px] tracking-[-0.3px]">About {tool.name}</h2>
         <div className="mt-4 space-y-4 text-sm leading-[1.65] text-[var(--body)]">
-          {tool.about.paragraphs.map((paragraph) => (
+          {(tool.about?.paragraphs ?? []).map((paragraph) => (
             <p key={paragraph}>{paragraph}</p>
           ))}
-          {tool.about.features?.length ? (
+          {tool.about?.features?.length ? (
             <div>
               <p className="mb-2 font-medium text-ink">Key features</p>
               <ul className="list-disc space-y-1.5 pl-5">
@@ -102,7 +102,7 @@ export function ToolWorkspace({
       <section className="mt-10">
         <h2 className="font-display text-[22px] tracking-[-0.3px]">Frequently Asked Questions</h2>
         <Accordion type="single" collapsible className="mt-4">
-          {tool.faqs.map((faq, index) => (
+          {(tool.faqs ?? []).map((faq, index) => (
             <AccordionItem key={faq.question} value={`faq-${index}`}>
               <AccordionTrigger>{faq.question}</AccordionTrigger>
               <AccordionContent>{faq.answer}</AccordionContent>

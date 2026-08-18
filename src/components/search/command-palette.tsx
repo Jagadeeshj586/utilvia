@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useEffect, useMemo, type ComponentType } from "react";
+import { useMemo, useState, type ComponentType } from "react";
 import { LayoutGrid, MessageSquarePlus, Sparkles, Star } from "lucide-react";
 import {
   CommandDialog,
@@ -11,7 +11,7 @@ import {
   CommandItem,
   CommandList,
 } from "@/components/ui/command";
-import { CATEGORIES, getAllTools, toolHref, toolId } from "@/lib/tools/registry";
+import { CATEGORIES, getAllTools, getPopularTools, searchTools, toolHref, toolId } from "@/lib/tools/catalog";
 import { CATEGORY_ICONS, CATEGORY_STYLES, getToolIcon } from "@/lib/tools/icons";
 import { cn } from "@/lib/utils";
 import { useRecentsStore } from "@/stores/recents-store";
@@ -39,31 +39,7 @@ export function CommandPalette() {
   const recents = useRecentsStore((s) => s.recents);
   const favorites = useRecentsStore((s) => s.favorites);
   const tools = getAllTools();
-
-  useEffect(() => {
-    const onKeyDown = (event: KeyboardEvent) => {
-      const target = event.target as HTMLElement | null;
-      const typingInField =
-        target &&
-        (target.tagName === "INPUT" ||
-          target.tagName === "TEXTAREA" ||
-          target.isContentEditable);
-
-      if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "k") {
-        event.preventDefault();
-        setOpen(!open);
-        return;
-      }
-
-      if (event.key === "/" && !typingInField) {
-        event.preventDefault();
-        setOpen(true);
-      }
-    };
-
-    window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
-  }, [open, setOpen]);
+  const [query, setQuery] = useState("");
 
   const recentTools = useMemo(
     () => recents.map((id) => tools.find((tool) => toolId(tool) === id)).filter(Boolean),
@@ -80,9 +56,15 @@ export function CommandPalette() {
     router.push(href);
   };
 
+  const trimmed = query.trim();
+  const visibleTools = useMemo(() => {
+    if (trimmed) return searchTools(trimmed).slice(0, 20);
+    return getPopularTools().slice(0, 8);
+  }, [trimmed]);
+
   return (
     <CommandDialog open={open} onOpenChange={setOpen}>
-      <CommandInput placeholder="What do you need to do?" />
+      <CommandInput placeholder="What do you need to do?" value={query} onValueChange={setQuery} />
       <CommandList>
         <CommandEmpty>No tools match that search.</CommandEmpty>
         <CommandGroup heading="Pages">
@@ -153,30 +135,25 @@ export function CommandPalette() {
             })}
           </CommandGroup>
         ) : null}
-        {CATEGORIES.map((category) => {
-          const groupTools = tools.filter((tool) => tool.category === category.id);
-          return (
-            <CommandGroup key={category.id} heading={category.label}>
-              {groupTools.map((tool) => {
-                const Icon = getToolIcon(tool.icon);
-                const style = CATEGORY_STYLES[tool.category];
-                return (
-                  <CommandItem
-                    key={toolId(tool)}
-                    value={`${tool.name} ${tool.category} ${tool.keywords.join(" ")}`}
-                    onSelect={() => go(toolHref(tool))}
-                  >
-                    <RowIcon icon={Icon} className={style.iconFg} />
-                    <span className="flex flex-col">
-                      <span>{tool.name}</span>
-                      <span className="text-xs text-muted-foreground">{tool.shortDescription}</span>
-                    </span>
-                  </CommandItem>
-                );
-              })}
-            </CommandGroup>
-          );
-        })}
+        <CommandGroup heading={trimmed ? "Tools" : "Popular"}>
+          {visibleTools.map((tool) => {
+            const Icon = getToolIcon(tool.icon);
+            const style = CATEGORY_STYLES[tool.category];
+            return (
+              <CommandItem
+                key={toolId(tool)}
+                value={`${tool.name} ${tool.category} ${tool.keywords.join(" ")}`}
+                onSelect={() => go(toolHref(tool))}
+              >
+                <RowIcon icon={Icon} className={style.iconFg} />
+                <span className="flex flex-col">
+                  <span>{tool.name}</span>
+                  <span className="text-xs text-muted-foreground">{tool.shortDescription}</span>
+                </span>
+              </CommandItem>
+            );
+          })}
+        </CommandGroup>
       </CommandList>
     </CommandDialog>
   );

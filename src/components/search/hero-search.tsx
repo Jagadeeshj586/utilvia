@@ -4,7 +4,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { useRouter } from "next/navigation";
 import { Search } from "lucide-react";
-import { getAllTools, getPopularTools, getReadyTools, searchTools, toolHref, toolId } from "@/lib/tools/registry";
+import { getAllTools, getPopularTools, getReadyTools, searchTools, toolHref, toolId } from "@/lib/tools/catalog";
 import { getToolIcon } from "@/lib/tools/icons";
 import { useRecentsStore } from "@/stores/recents-store";
 import { useUiStore } from "@/stores/ui-store";
@@ -21,6 +21,7 @@ export function HeroSearch({ className, tone = "light" }: { className?: string; 
   const fieldRef = useRef<HTMLDivElement>(null);
   const listRef = useRef<HTMLUListElement>(null);
   const [query, setQuery] = useState("");
+  const [debouncedQuery, setDebouncedQuery] = useState("");
   const [open, setOpen] = useState(false);
   const [resultsMounted, setResultsMounted] = useState(false);
   const [resultsVisible, setResultsVisible] = useState(false);
@@ -44,7 +45,12 @@ export function HeroSearch({ className, tone = "light" }: { className?: string; 
     return merged;
   }, [recents]);
 
-  const trimmed = query.trim();
+  useEffect(() => {
+    const timer = window.setTimeout(() => setDebouncedQuery(query), 120);
+    return () => window.clearTimeout(timer);
+  }, [query]);
+
+  const trimmed = debouncedQuery.trim();
   const results = useMemo(
     () => (trimmed ? searchTools(trimmed).slice(0, SUGGESTION_LIMIT) : suggested),
     [suggested, trimmed],

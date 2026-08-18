@@ -1,11 +1,13 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { useEffect, useRef, useState } from "react";
-import { AudioRecorder } from "@/components/tools/productivity/audio-recorder";
-import { BoxBreathingTimer } from "@/components/tools/productivity/box-breathing-timer";
-import { RandomNumberGeneratorTool } from "@/components/tools/productivity/random-number-generator";
-import { PomodoroTimer } from "@/components/tools/productivity/pomodoro-timer";
 import { Button } from "@/components/ui/button";
+
+const AudioRecorder = dynamic(() => import("@/components/tools/productivity/audio-recorder").then((m) => m.AudioRecorder), { loading: () => <div className='h-40 animate-pulse rounded-lg bg-surface-card' aria-hidden /> });
+const BoxBreathingTimer = dynamic(() => import("@/components/tools/productivity/box-breathing-timer").then((m) => m.BoxBreathingTimer), { loading: () => <div className='h-40 animate-pulse rounded-lg bg-surface-card' aria-hidden /> });
+const RandomNumberGeneratorTool = dynamic(() => import("@/components/tools/productivity/random-number-generator").then((m) => m.RandomNumberGeneratorTool), { loading: () => <div className='h-40 animate-pulse rounded-lg bg-surface-card' aria-hidden /> });
+const PomodoroTimer = dynamic(() => import("@/components/tools/productivity/pomodoro-timer").then((m) => m.PomodoroTimer), { loading: () => <div className='h-40 animate-pulse rounded-lg bg-surface-card' aria-hidden /> });
 
 function MissingTool({ slug }: { slug: string }) {
   return (

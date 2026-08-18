@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 import { SITE } from "@/lib/site";
-import { CATEGORIES, getAllTools, toolHref } from "@/lib/tools/registry";
+import { CATEGORIES, getAllTools, toolHref } from "@/lib/tools/catalog";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes = ["", "/tools", "/popular", "/faq", "/about", "/privacy", "/terms", "/contact"].map(

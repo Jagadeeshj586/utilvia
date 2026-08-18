@@ -26,12 +26,18 @@ export function GradientBackground({ className }: { className?: string }) {
       return;
     }
 
+    let frame = 0;
     const onMove = (event: MouseEvent) => {
-      const rect = section.getBoundingClientRect();
-      const nx = (event.clientX - rect.left) / rect.width - 0.5;
-      const ny = (event.clientY - rect.top) / rect.height - 0.5;
-      root.style.setProperty("--hero-parallax-x", `${(nx * 18).toFixed(2)}px`);
-      root.style.setProperty("--hero-parallax-y", `${(ny * 14).toFixed(2)}px`);
+      if (frame) return;
+      const { clientX, clientY } = event;
+      frame = window.requestAnimationFrame(() => {
+        frame = 0;
+        const rect = section.getBoundingClientRect();
+        const nx = (clientX - rect.left) / rect.width - 0.5;
+        const ny = (clientY - rect.top) / rect.height - 0.5;
+        root.style.setProperty("--hero-parallax-x", `${(nx * 18).toFixed(2)}px`);
+        root.style.setProperty("--hero-parallax-y", `${(ny * 14).toFixed(2)}px`);
+      });
     };
 
     const onLeave = () => disableParallax();
@@ -46,6 +52,7 @@ export function GradientBackground({ className }: { className?: string }) {
     reducedMotion.addEventListener("change", onReducedChange);
 
     return () => {
+      if (frame) window.cancelAnimationFrame(frame);
       section.removeEventListener("mousemove", onMove);
       section.removeEventListener("mouseleave", onLeave);
       reducedMotion.removeEventListener("change", onReducedChange);

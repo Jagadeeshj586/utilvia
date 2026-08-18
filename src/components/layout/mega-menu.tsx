@@ -12,7 +12,7 @@ import {
   toolHref,
   type CategoryId,
   type ToolDefinition,
-} from "@/lib/tools/registry";
+} from "@/lib/tools/catalog";
 import { CATEGORY_ICONS, CATEGORY_STYLES, getToolIcon } from "@/lib/tools/icons";
 import { cn } from "@/lib/utils";
 

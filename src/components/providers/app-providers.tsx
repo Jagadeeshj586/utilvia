@@ -3,7 +3,7 @@
 import type { ReactNode } from "react";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { FaviconSwitcher } from "@/components/layout/favicon-switcher";
-import { CommandPalette } from "@/components/search/command-palette";
+import { CommandPaletteHost } from "@/components/search/command-palette-host";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Toaster } from "sonner";
 
@@ -19,7 +19,7 @@ export function AppProviders({ children }: { children: ReactNode }) {
       <TooltipProvider delayDuration={200}>
         <FaviconSwitcher />
         {children}
-        <CommandPalette />
+        <CommandPaletteHost />
         <Toaster richColors position="bottom-left" />
       </TooltipProvider>
     </ThemeProvider>

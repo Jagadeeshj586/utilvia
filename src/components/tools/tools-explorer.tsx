@@ -8,7 +8,7 @@ import { CatalogStickySearch } from "@/components/search/sticky-search";
 import { TitleTrustRow } from "@/components/layout/title-trust-row";
 import { Button } from "@/components/ui/button";
 import { Pagination } from "@/components/ui/pagination";
-import { searchTools, type CategoryId, type ToolDefinition } from "@/lib/tools/registry";
+import { searchTools, type CategoryId, type ToolDefinition } from "@/lib/tools/catalog";
 
 const PAGE_SIZE = 12;
 
@@ -34,14 +34,20 @@ export function ToolsExplorer({
   const router = useRouter();
   const params = useSearchParams();
   const [query, setQuery] = useState("");
+  const [debouncedQuery, setDebouncedQuery] = useState("");
   const [category, setCategory] = useState<string>(initialCategory ?? params.get("category") ?? "all");
   const [page, setPage] = useState(1);
 
+  useEffect(() => {
+    const timer = window.setTimeout(() => setDebouncedQuery(query), 120);
+    return () => window.clearTimeout(timer);
+  }, [query]);
+
   const tools = useMemo(() => {
-    let list = searchTools(query);
+    let list = searchTools(debouncedQuery);
     if (category !== "all") list = list.filter((tool) => tool.category === category);
     return sortTools(list);
-  }, [query, category]);
+  }, [debouncedQuery, category]);
 
   const pageCount = Math.max(1, Math.ceil(tools.length / PAGE_SIZE));
   const paged = tools.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);

@@ -4,7 +4,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
-import { getCategory, toolHref, type ToolDefinition } from "@/lib/tools/registry";
+import { getCategory, toolHref, type ToolDefinition } from "@/lib/tools/catalog";
 import { CATEGORY_STYLES, getToolIcon } from "@/lib/tools/icons";
 import { SITE } from "@/lib/site";
 import { cn } from "@/lib/utils";

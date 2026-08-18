@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { TitleTrustRow } from "@/components/layout/title-trust-row";
 import { SITE } from "@/lib/site";
-import { getAllTools } from "@/lib/tools/registry";
+import { getAllTools } from "@/lib/tools/catalog";
 
 export const metadata: Metadata = {
   title: "About",

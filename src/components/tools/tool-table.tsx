@@ -6,7 +6,7 @@ import { ArrowDown, ArrowUp, ArrowUpDown } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
-import { getCategory, toolHref, type ToolDefinition } from "@/lib/tools/registry";
+import { getCategory, toolHref, type ToolDefinition } from "@/lib/tools/catalog";
 import { CATEGORY_STYLES, getToolIcon } from "@/lib/tools/icons";
 import { cn } from "@/lib/utils";
 

@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
-import { getCategory } from "@/lib/tools/registry";
+import { getCategory } from "@/lib/tools/catalog";
 
 export default function LegacyCategoryPage({ params }: { params: { category: string } }) {
   const mapped: Record<string, string> = {
