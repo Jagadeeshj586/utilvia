@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useDeferredValue, useEffect, useMemo, useRef, useState } from "react";
 import { ChevronDown, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -13,7 +13,7 @@ import {
   type CategoryId,
   type ToolDefinition,
 } from "@/lib/tools/catalog";
-import { CATEGORY_ICONS, CATEGORY_STYLES, getToolIcon } from "@/lib/tools/icons";
+import { CATEGORY_ICONS, CATEGORY_STYLES } from "@/lib/tools/category-icons";
 import { cn } from "@/lib/utils";
 
 function sortTools(tools: ToolDefinition[]) {
@@ -26,20 +26,21 @@ function sortTools(tools: ToolDefinition[]) {
 export function MegaMenu({ onDark = false }: { onDark?: boolean }) {
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
+  const deferredQuery = useDeferredValue(query);
   const [activeCategory, setActiveCategory] = useState<CategoryId>(CATEGORIES[0].id);
   const rootRef = useRef<HTMLDivElement>(null);
   const searchRef = useRef<HTMLInputElement>(null);
   const closeTimerRef = useRef<number | null>(null);
   const openedByPointerRef = useRef(false);
   const total = getAllTools().length;
-  const searching = query.trim().length > 0;
+  const searching = deferredQuery.trim().length > 0;
   const active = CATEGORIES.find((category) => category.id === activeCategory) ?? CATEGORIES[0];
   const categoryCount = getToolsByCategory(active.id).length;
 
   const tools = useMemo(() => {
-    if (searching) return sortTools(searchTools(query));
+    if (searching) return sortTools(searchTools(deferredQuery)).slice(0, 24);
     return sortTools(getToolsByCategory(activeCategory));
-  }, [activeCategory, query, searching]);
+  }, [activeCategory, deferredQuery, searching]);
 
   const clearCloseTimer = () => {
     if (closeTimerRef.current != null) {
@@ -175,7 +176,7 @@ export function MegaMenu({ onDark = false }: { onDark?: boolean }) {
                 {tools.length ? (
                   <ul className="grid grid-cols-1 gap-0.5 sm:grid-cols-2 md:grid-cols-3">
                     {tools.map((tool) => {
-                      const Icon = getToolIcon(tool.icon);
+                      const Icon = CATEGORY_ICONS[tool.category];
                       const style = CATEGORY_STYLES[tool.category];
                       return (
                         <li key={`${tool.category}-${tool.slug}`}>

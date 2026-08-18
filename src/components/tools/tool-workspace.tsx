@@ -1,19 +1,11 @@
-"use client";
-
 import type { ReactNode } from "react";
-import { useEffect } from "react";
-import { toast } from "sonner";
-import { Star } from "lucide-react";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { Button } from "@/components/ui/button";
-import { TooltipProvider } from "@/components/ui/tooltip";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { TitleTrustRow } from "@/components/layout/title-trust-row";
 import { PrivacyBadge } from "@/components/tools/privacy-badge";
 import { ToolCard } from "@/components/tools/tool-card";
+import { RecentsTracker, ToolSaveButton } from "@/components/tools/tool-save-button";
 import { getCategory, getRelatedTools, toolId, type ToolDefinition } from "@/lib/tools/catalog";
 import { CATEGORY_STYLES, getToolIcon } from "@/lib/tools/icons";
-import { useRecentsStore } from "@/stores/recents-store";
 
 export function ToolWorkspace({
   tool,
@@ -23,21 +15,15 @@ export function ToolWorkspace({
   children: ReactNode;
 }) {
   const id = toolId(tool);
-  const recordVisit = useRecentsStore((s) => s.recordVisit);
-  const toggleFavorite = useRecentsStore((s) => s.toggleFavorite);
-  const favorite = useRecentsStore((s) => s.favorites.includes(id));
   const related = getRelatedTools(tool);
   const category = getCategory(tool.category);
   const Icon = getToolIcon(tool.icon);
   const style = CATEGORY_STYLES[tool.category];
-
-  useEffect(() => {
-    recordVisit(id);
-  }, [id, recordVisit]);
+  const faqs = tool.faqs ?? [];
 
   return (
-    <TooltipProvider delayDuration={200}>
     <div className="max-site py-8 sm:py-10">
+      <RecentsTracker toolId={id} />
       <Breadcrumbs
         items={[
           { href: "/", label: "Home" },
@@ -67,17 +53,7 @@ export function ToolWorkspace({
           ) : null}
           {tool.fileUpload ? <PrivacyBadge className="mt-4" /> : null}
         </div>
-        <Button
-          variant={favorite ? "default" : "outline"}
-          onClick={() => {
-            const next = !favorite;
-            toggleFavorite(id);
-            toast.success(next ? "Saved to your tools" : "Removed from saved tools");
-          }}
-        >
-          <Star className={favorite ? "fill-current" : ""} />
-          {favorite ? "Saved" : "Save tool"}
-        </Button>
+        <ToolSaveButton toolId={id} />
       </div>
 
       <section className="rounded-lg border border-[var(--hairline)] bg-canvas p-5 sm:p-6">{children}</section>
@@ -101,17 +77,21 @@ export function ToolWorkspace({
         </div>
       </section>
 
-      <section className="mt-10">
-        <h2 className="font-display text-[22px] tracking-[-0.3px]">Frequently Asked Questions</h2>
-        <Accordion type="single" collapsible className="mt-4">
-          {(tool.faqs ?? []).map((faq, index) => (
-            <AccordionItem key={faq.question} value={`faq-${index}`}>
-              <AccordionTrigger>{faq.question}</AccordionTrigger>
-              <AccordionContent>{faq.answer}</AccordionContent>
-            </AccordionItem>
-          ))}
-        </Accordion>
-      </section>
+      {faqs.length ? (
+        <section className="mt-10">
+          <h2 className="font-display text-[22px] tracking-[-0.3px]">Frequently Asked Questions</h2>
+          <div className="mt-4 divide-y divide-[var(--hairline)] border-y border-[var(--hairline)]">
+            {faqs.map((faq) => (
+              <details key={faq.question} className="py-4">
+                <summary className="cursor-pointer font-display text-[18px] font-medium leading-snug tracking-[-0.02em] text-ink">
+                  {faq.question}
+                </summary>
+                <p className="mt-3 text-[15px] leading-[1.65] text-[var(--body)]">{faq.answer}</p>
+              </details>
+            ))}
+          </div>
+        </section>
+      ) : null}
 
       {related.length ? (
         <section className="mt-10">
@@ -124,6 +104,5 @@ export function ToolWorkspace({
         </section>
       ) : null}
     </div>
-    </TooltipProvider>
   );
 }

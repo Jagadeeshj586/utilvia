@@ -1,5 +1,3 @@
-"use client";
-
 import { Lock } from "lucide-react";
 import { SITE } from "@/lib/site";
 import { cn } from "@/lib/utils";

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useDeferredValue, useEffect, useMemo, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { CategoryChips } from "@/components/tools/category-chips";
 import { ToolGrid } from "@/components/tools/tool-grid";
@@ -34,20 +34,15 @@ export function ToolsExplorer({
   const router = useRouter();
   const params = useSearchParams();
   const [query, setQuery] = useState("");
-  const [debouncedQuery, setDebouncedQuery] = useState("");
+  const deferredQuery = useDeferredValue(query);
   const [category, setCategory] = useState<string>(initialCategory ?? params.get("category") ?? "all");
   const [page, setPage] = useState(1);
 
-  useEffect(() => {
-    const timer = window.setTimeout(() => setDebouncedQuery(query), 120);
-    return () => window.clearTimeout(timer);
-  }, [query]);
-
   const tools = useMemo(() => {
-    let list = searchTools(debouncedQuery);
+    let list = searchTools(deferredQuery);
     if (category !== "all") list = list.filter((tool) => tool.category === category);
     return sortTools(list);
-  }, [debouncedQuery, category]);
+  }, [deferredQuery, category]);
 
   const pageCount = Math.max(1, Math.ceil(tools.length / PAGE_SIZE));
   const paged = tools.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);

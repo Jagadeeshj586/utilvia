@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useMemo, useState, type ComponentType } from "react";
+import { useDeferredValue, useMemo, useState, type ComponentType } from "react";
 import { LayoutGrid, MessageSquarePlus, Sparkles, Star } from "lucide-react";
 import {
   CommandDialog,
@@ -40,6 +40,7 @@ export function CommandPalette() {
   const favorites = useRecentsStore((s) => s.favorites);
   const tools = getAllTools();
   const [query, setQuery] = useState("");
+  const deferredQuery = useDeferredValue(query);
 
   const recentTools = useMemo(
     () => recents.map((id) => tools.find((tool) => toolId(tool) === id)).filter(Boolean),
@@ -56,7 +57,7 @@ export function CommandPalette() {
     router.push(href);
   };
 
-  const trimmed = query.trim();
+  const trimmed = deferredQuery.trim();
   const visibleTools = useMemo(() => {
     if (trimmed) return searchTools(trimmed).slice(0, 20);
     return getPopularTools().slice(0, 8);

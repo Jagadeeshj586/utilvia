@@ -32,6 +32,7 @@ export function ToolCard({ tool, featured = false }: { tool: ToolDefinition; fea
   return (
     <Link
       href={toolHref(tool)}
+      prefetch={false}
       className={cn(
         "group relative flex h-full flex-col rounded-lg border border-[var(--hairline)] bg-surface-card p-5 no-underline sm:p-6",
         featured

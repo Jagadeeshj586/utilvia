@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useDeferredValue, useEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { useRouter } from "next/navigation";
 import { Search } from "lucide-react";
@@ -30,12 +30,13 @@ export function HeroSearch({ className, tone = "light" }: { className?: string; 
   const fieldRef = useRef<HTMLDivElement>(null);
   const listRef = useRef<HTMLUListElement>(null);
   const [query, setQuery] = useState("");
-  const [debouncedQuery, setDebouncedQuery] = useState("");
+  const deferredQuery = useDeferredValue(query);
   const [open, setOpen] = useState(false);
   const [resultsMounted, setResultsMounted] = useState(false);
   const [resultsVisible, setResultsVisible] = useState(false);
   const [coords, setCoords] = useState({ top: 0, left: 0, width: 0 });
   const [catalog, setCatalog] = useState<CatalogModule | null>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
 
   const ensureCatalog = useCallback(() => {
     void loadCatalog().then(setCatalog);
@@ -60,16 +61,15 @@ export function HeroSearch({ className, tone = "light" }: { className?: string; 
     return merged;
   }, [catalog, recents]);
 
-  useEffect(() => {
-    const timer = window.setTimeout(() => setDebouncedQuery(query), 120);
-    return () => window.clearTimeout(timer);
-  }, [query]);
-
-  const trimmed = debouncedQuery.trim();
+  const trimmed = deferredQuery.trim();
   const results = useMemo(
     () => (trimmed && catalog ? catalog.searchTools(trimmed).slice(0, SUGGESTION_LIMIT) : suggested),
     [catalog, suggested, trimmed],
   );
+
+  useEffect(() => {
+    setActiveIndex(0);
+  }, [results]);
 
   const updatePosition = useCallback(() => {
     const field = fieldRef.current;
@@ -150,7 +150,7 @@ export function HeroSearch({ className, tone = "light" }: { className?: string; 
               No tools match that search.
             </li>
           ) : (
-            results.map((tool) => {
+            results.map((tool, index) => {
               const Icon = CATEGORY_ICONS[tool.category];
               return (
                 <li key={`${tool.category}/${tool.slug}`}>
@@ -158,7 +158,13 @@ export function HeroSearch({ className, tone = "light" }: { className?: string; 
                     type="button"
                     className={cn(
                       "flex w-full items-center gap-3 px-4 py-3 text-left transition-colors duration-150",
-                      tone === "dark" ? "text-[var(--on-dark)] hover:bg-white/5" : "hover:bg-surface-soft",
+                      index === activeIndex
+                        ? tone === "dark"
+                          ? "bg-white/5 text-[var(--on-dark)]"
+                          : "bg-surface-soft text-ink"
+                        : tone === "dark"
+                          ? "text-[var(--on-dark)] hover:bg-white/5"
+                          : "hover:bg-surface-soft",
                     )}
                     onMouseDown={(event) => event.preventDefault()}
                     onClick={() => {
@@ -241,8 +247,17 @@ export function HeroSearch({ className, tone = "light" }: { className?: string; 
               event.preventDefault();
               setCommandOpen(true);
             }
-            if (event.key === "Enter" && catalog && results[0]) {
-              router.push(catalog.toolHref(results[0]));
+            if (event.key === "ArrowDown" && results.length) {
+              event.preventDefault();
+              setActiveIndex((index) => (index + 1) % results.length);
+            }
+            if (event.key === "ArrowUp" && results.length) {
+              event.preventDefault();
+              setActiveIndex((index) => (index - 1 + results.length) % results.length);
+            }
+            if (event.key === "Enter" && catalog && results[activeIndex]) {
+              event.preventDefault();
+              router.push(catalog.toolHref(results[activeIndex]));
               setOpen(false);
             }
             if (event.key === "Escape") setOpen(false);
