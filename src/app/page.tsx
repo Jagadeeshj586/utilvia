@@ -23,9 +23,9 @@ export default function HomePage() {
 
   return (
     <div>
-      <section className="relative flex min-h-[70svh] flex-col justify-center overflow-hidden py-12 sm:py-14">
+      <section className="relative flex min-h-[70svh] flex-col justify-center py-12 sm:py-14">
         <GradientBackground />
-        <div className="relative z-10 mx-auto w-full max-w-[1200px] px-4 text-center sm:px-6">
+        <div className="relative z-20 mx-auto w-full max-w-[1200px] px-4 text-center sm:px-6">
           <p className="mb-3 text-[12px] font-medium uppercase tracking-[1.5px] text-[var(--muted-ink)]">
             {SITE.positioning}
           </p>
@@ -49,7 +49,7 @@ export default function HomePage() {
           </div>
           <div className="mt-6">
             <p className="mb-3 text-[14px] font-medium text-[var(--muted-ink)]">What do you need to do?</p>
-            <HeroSearch />
+            <HeroSearch className="relative z-30" />
           </div>
           <div className="mt-4 flex flex-wrap items-center justify-center gap-2">
             {QUICK_ACTIONS.map((item) => (
