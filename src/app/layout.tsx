@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, JetBrains_Mono, Newsreader } from "next/font/google";
+import { Analytics } from "@vercel/analytics/react";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import { Footer } from "@/components/layout/footer";
 import { Header } from "@/components/layout/header";
 import { AppProviders } from "@/components/providers/app-providers";
@@ -64,6 +66,8 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+  const gaId = process.env.NEXT_PUBLIC_GA_ID;
+
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${sans.variable} ${display.variable} ${mono.variable} min-h-screen bg-canvas font-sans antialiased`}>
@@ -73,6 +77,8 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
             <main className="flex-1">{children}</main>
             <Footer />
           </div>
+          <Analytics />
+          {gaId ? <GoogleAnalytics gaId={gaId} /> : null}
         </AppProviders>
       </body>
     </html>
