@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
+import { AdRegion } from "@/components/ads/ad-region";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { FeatureBanner } from "@/components/tools/feature-banner";
 import { ToolGridSkeleton } from "@/components/tools/tool-skeleton";
@@ -45,6 +46,7 @@ export default function CategoryPage({ params }: { params: Params }) {
         cta="Browse all tools"
         tone="cream"
       />
+      <AdRegion name="categoryMid" className="mb-8 mt-0" />
       <Suspense fallback={<ToolGridSkeleton count={6} />}>
         <ToolsExplorer
           initialCategory={category.id}

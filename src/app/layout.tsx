@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import { Inter, Newsreader } from "next/font/google";
+import { AdSenseScript } from "@/components/ads/adsense-script";
 import { Footer } from "@/components/layout/footer";
 import { Header } from "@/components/layout/header";
 import { AppProviders } from "@/components/providers/app-providers";
 import { DeferredMetrics } from "@/components/analytics/deferred-metrics";
+import { ADSENSE } from "@/lib/adsense";
 import { SITE } from "@/lib/site";
 import "./globals.css";
 
@@ -43,6 +45,9 @@ export const metadata: Metadata = {
     title: SITE.name,
     description: SITE.description,
   },
+  other: {
+    "google-adsense-account": ADSENSE.publisherId,
+  },
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "any" },
@@ -76,6 +81,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
             <Footer />
           </div>
           <DeferredMetrics gaId={gaId} />
+          <AdSenseScript />
         </AppProviders>
       </body>
     </html>

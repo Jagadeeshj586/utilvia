@@ -60,8 +60,8 @@ export default function TermsPage() {
       <section className="mt-8">
         <h2 className="font-display text-[1.25rem] font-semibold tracking-[-0.03em] text-ink">Advertising</h2>
         <p className="mt-3 leading-7 text-[var(--body)]">
-          {SITE.name} may introduce Google AdSense or similar advertising services in the future. Our Terms and Privacy
-          Policy will be updated before ads are enabled. See our{" "}
+          {SITE.name} may display advertisements through Google AdSense. Ads are provided by Google and are not
+          endorsements by {SITE.name}. See our{" "}
           <Link href="/privacy" className="font-medium text-primary hover:underline">
             Privacy Policy
           </Link>

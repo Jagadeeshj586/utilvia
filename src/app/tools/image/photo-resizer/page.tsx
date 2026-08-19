@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import dynamic from "next/dynamic";
 import Link from "next/link";
+import { AdRegion } from "@/components/ads/ad-region";
 import { SITE } from "@/lib/site";
 
 /**
@@ -225,12 +226,16 @@ export default function PhotoResizerPage() {
         </p>
       </header>
 
+      <AdRegion name="toolBelowIntro" className="mb-8 mt-6" />
+
       <section
         className="mt-8 rounded-lg border border-[var(--hairline)] bg-canvas p-5 sm:p-6"
         aria-label="Aadhaar photo resizer workspace"
       >
         <PhotoResizer />
       </section>
+
+      <AdRegion name="toolBelowWorkspace" />
 
       <section className="mt-12 max-w-3xl" aria-labelledby="how-to-heading">
         <h2 id="how-to-heading" className="font-display text-[22px] tracking-[-0.3px] text-ink">
@@ -361,6 +366,8 @@ export default function PhotoResizerPage() {
           ))}
         </div>
       </section>
+
+      <AdRegion name="toolBottom" />
 
       <section className="mt-12" aria-labelledby="related-heading">
         <h2 id="related-heading" className="font-display text-[22px] tracking-[-0.3px] text-ink">

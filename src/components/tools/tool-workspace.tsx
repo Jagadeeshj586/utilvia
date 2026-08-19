@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { AdRegion } from "@/components/ads/ad-region";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { TitleTrustRow } from "@/components/layout/title-trust-row";
 import { ToolSeoContent } from "@/components/seo/tool-seo-content";
@@ -58,7 +59,11 @@ export function ToolWorkspace({
         <ToolSaveButton toolId={id} />
       </div>
 
+      <AdRegion name="toolBelowIntro" className="mb-8 mt-0" />
+
       <section className="rounded-lg border border-[var(--hairline)] bg-canvas p-5 sm:p-6">{children}</section>
+
+      <AdRegion name="toolBelowWorkspace" />
 
       {seo ? (
         <ToolSeoContent seo={seo} localFirst={tool.privacy !== "mixed"} />
@@ -82,6 +87,8 @@ export function ToolWorkspace({
           </div>
         </section>
       )}
+
+      <AdRegion name="toolBottom" />
 
       {related.length ? (
         <section className="mt-10">

@@ -1,6 +1,7 @@
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import { ArrowRight, Lock, ShieldCheck, Sparkles, UserRoundX } from "lucide-react";
+import { AdRegion } from "@/components/ads/ad-region";
 import { GradientBackground } from "@/components/brand/gradient-background";
 import { TrustBar } from "@/components/layout/trust-bar";
 import { TitleTrustRow } from "@/components/layout/title-trust-row";
@@ -74,6 +75,8 @@ export default function HomePage() {
         </div>
       </section>
 
+      <AdRegion name="homepageBelowHero" className="relative z-10 mx-auto max-w-[1200px] px-4 sm:px-6" />
+
       <section className="relative z-10 py-12 sm:py-16">
         <div className="max-site">
           <div className="mx-auto max-w-2xl text-center">
@@ -117,6 +120,8 @@ export default function HomePage() {
           </Button>
         </div>
       </section>
+
+      <AdRegion name="homepageBeforeCategories" className="max-site" />
 
       <section className="max-site pb-12 sm:pb-16" aria-labelledby="categories-heading">
         <div className="mb-6 text-center">
