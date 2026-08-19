@@ -48,6 +48,7 @@ function run() {
   }
 
   console.log(`\nSEO AUDIT: ${tools.length - missing}/${tools.length} tools look complete.`);
+  console.log(`Unique titles: ${titles.size}. Unique descriptions: ${descriptions.size}.`);
   if (missing) process.exitCode = 1;
 }
 

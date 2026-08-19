@@ -16,12 +16,19 @@ const nextConfig = {
           { key: "X-Content-Type-Options", value: "nosniff" },
           { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
           { key: "X-Frame-Options", value: "SAMEORIGIN" },
+          { key: "Strict-Transport-Security", value: "max-age=31536000; includeSubDomains" },
         ],
       },
     ];
   },
   async redirects() {
     return [
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "www.utilvia.net" }],
+        destination: "https://utilvia.net/:path*",
+        permanent: true,
+      },
       { source: "/tools/pdf/compress", destination: "/tools/pdf/compress-pdf", permanent: true },
       { source: "/tools/pdf/merge", destination: "/tools/pdf/merge-pdf", permanent: true },
       { source: "/tools/pdf/split", destination: "/tools/pdf/split-pdf", permanent: true },

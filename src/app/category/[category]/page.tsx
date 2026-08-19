@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { Suspense } from "react";
 import { AdRegion } from "@/components/ads/ad-region";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
+import { CategoryJsonLd } from "@/components/seo/category-json-ld";
 import { FeatureBanner } from "@/components/tools/feature-banner";
 import { ToolGridSkeleton } from "@/components/tools/tool-skeleton";
 import { ToolsExplorer } from "@/components/tools/tools-explorer";
@@ -29,10 +30,17 @@ export function generateMetadata({ params }: { params: Params }): Metadata {
 export default function CategoryPage({ params }: { params: Params }) {
   const category = getCategory(params.category);
   if (!category) notFound();
-  const count = getToolsByCategory(category.id).length;
+  const tools = getToolsByCategory(category.id);
+  const count = tools.length;
 
   return (
     <div className="max-site py-10">
+      <CategoryJsonLd
+        name={`Free ${category.label} Online`}
+        description={category.description}
+        path={`/category/${category.id}`}
+        tools={tools}
+      />
       <Breadcrumbs
         items={[
           { href: "/", label: "Home" },

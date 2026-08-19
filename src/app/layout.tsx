@@ -47,6 +47,7 @@ export const metadata: Metadata = {
     title: SITE.name,
     description: SITE.description,
   },
+  robots: { index: true, follow: true },
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "any" },
@@ -77,9 +78,17 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       </head>
       <body className={`${sans.variable} ${display.variable} min-h-screen bg-canvas font-sans antialiased`}>
         <AppProviders>
+          <a
+            href="#main-content"
+            className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-canvas focus:px-3 focus:py-2 focus:text-ink focus:shadow-lg"
+          >
+            Skip to content
+          </a>
           <div className="flex min-h-screen flex-col">
             <Header />
-            <main className="flex-1">{children}</main>
+            <main id="main-content" className="flex-1">
+              {children}
+            </main>
             <Footer />
           </div>
           <SiteJsonLd />
