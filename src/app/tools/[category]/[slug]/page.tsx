@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { ToolJsonLd } from "@/components/seo/json-ld";
+import { ToolJsonLd } from "@/components/seo/tool-json-ld";
 import { ToolRenderer } from "@/components/tools/tool-renderer";
 import { ToolWorkspace } from "@/components/tools/tool-workspace";
 import { getToolSeo } from "@/config/tools";

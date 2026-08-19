@@ -1,5 +1,7 @@
 import { SITE } from "@/lib/site";
 
+/** Central tool SEO registry. Full records for compress-pdf, emi-calculator, and image-compressor; other tools inherit catalog fallbacks. */
+
 export type ToolHowToStep = {
   step: string;
   text: string;
