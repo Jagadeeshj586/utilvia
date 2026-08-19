@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
-import { Sparkles } from "lucide-react";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { TitleTrustRow } from "@/components/layout/title-trust-row";
-import { FeatureBanner } from "@/components/tools/feature-banner";
 import { ToolGrid } from "@/components/tools/tool-grid";
 import { getPopularTools } from "@/lib/tools/catalog";
 
@@ -17,16 +15,6 @@ export default function PopularPage() {
   return (
     <div className="max-site py-10">
       <Breadcrumbs items={[{ href: "/", label: "Home" }, { label: "Popular Tools" }]} />
-      <FeatureBanner
-        className="mb-8"
-        eyebrow="Most used"
-        title="Start with what people open every day"
-        body="PDF compress, image tools, EMI, JSON formatter, and other everyday utilities."
-        href="/tools"
-        cta="See all tools"
-        icon={Sparkles}
-        tone="dark"
-      />
       <h1 className="font-display text-[32px] tracking-[-0.5px] sm:text-[40px]">Popular Tools</h1>
       <p className="mt-2 max-w-2xl text-[var(--body)]">Start with the utilities people reach for most often.</p>
       <TitleTrustRow className="mt-4" />
