@@ -37,10 +37,11 @@ export default function HomePage() {
             {SITE.positioning}
           </p>
           <h1 className="mx-auto max-w-4xl font-display text-[32px] font-semibold leading-[1.05] tracking-[-1.5px] text-ink sm:text-[48px] lg:text-[56px]">
-            Free In-Browser Online Tools &amp; File Utilities
+            Free Online Tools to Compress, Convert, Edit &amp; Manage Files
           </h1>
-          <p className="mx-auto mt-4 max-w-2xl text-[16px] font-normal leading-[1.65] text-[var(--body)]">
-            Convert, calculate, compress, generate, format and simplify everyday tasks - directly in your browser.
+          <p className="mx-auto mt-4 max-w-3xl text-[16px] font-normal leading-[1.65] text-[var(--body)]">
+            {SITE.name} is a free online toolbox with {toolCount}+ fast, private, browser-based tools to compress,
+            convert, edit, and manage your files in seconds. No unnecessary uploads. No complicated software.
           </p>
           <TitleTrustRow className="mt-5" align="center" />
           <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
