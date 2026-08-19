@@ -29,13 +29,13 @@ export function TitleTrustRow({
   return (
     <ul
       className={cn(
-        "flex flex-wrap items-center gap-x-6 gap-y-2 text-[14px] font-medium text-[var(--body)]",
+        "flex flex-nowrap items-center gap-x-2 overflow-x-auto whitespace-nowrap text-[11px] font-medium text-[var(--body)] sm:gap-x-6 sm:overflow-visible sm:text-[14px]",
         align === "center" ? "justify-center" : "justify-start",
         className,
       )}
     >
       {ITEMS.map((item) => (
-        <li key={item.label} className="inline-flex items-center gap-2">
+        <li key={item.label} className="inline-flex shrink-0 items-center gap-1 sm:gap-2">
           <item.icon className={cn("h-4 w-4 shrink-0", item.iconClass)} strokeWidth={1.75} aria-hidden />
           {item.label}
         </li>
