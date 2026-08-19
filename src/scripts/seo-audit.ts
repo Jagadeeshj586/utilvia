@@ -1,5 +1,5 @@
 import { getToolSeo } from "@/config/tools";
-import { getAllTools } from "@/lib/tools/catalog";
+import { CATEGORIES, getAllTools, getRelatedTools, toolHref } from "@/lib/tools/catalog";
 
 function clip(text: string) {
   return text.replace(/\s+/g, " ").trim();
@@ -47,8 +47,27 @@ function run() {
     }
   }
 
+  const sitemapPaths = new Set([
+    "/",
+    "/tools",
+    "/popular",
+    "/faq",
+    "/about",
+    "/contact",
+    "/privacy",
+    "/terms",
+    ...CATEGORIES.map((category) => `/category/${category.id}`),
+    ...tools.map((tool) => toolHref(tool)),
+  ]);
+
+  const orphans = tools.filter((tool) => {
+    const related = getRelatedTools(tool);
+    return related.length === 0;
+  });
+
   console.log(`\nSEO AUDIT: ${tools.length - missing}/${tools.length} tools look complete.`);
   console.log(`Unique titles: ${titles.size}. Unique descriptions: ${descriptions.size}.`);
+  console.log(`Sitemap paths: ${sitemapPaths.size}. Tools with no related links: ${orphans.length}.`);
   if (missing) process.exitCode = 1;
 }
 

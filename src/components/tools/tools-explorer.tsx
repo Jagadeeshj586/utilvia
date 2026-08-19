@@ -26,10 +26,12 @@ export function ToolsExplorer({
   initialCategory,
   title = "All Tools",
   description,
+  omitHeader = false,
 }: {
   initialCategory?: CategoryId;
   title?: string;
   description?: string;
+  omitHeader?: boolean;
 }) {
   const router = useRouter();
   const params = useSearchParams();
@@ -65,20 +67,22 @@ export function ToolsExplorer({
 
   return (
     <div>
-      <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-        <div>
-          <h1 className="font-display text-[32px] tracking-[-0.5px] sm:text-[40px]">{title}</h1>
-          <p className="mt-2 max-w-2xl leading-[1.65] text-[var(--body)]">
-            {description ?? `${tools.length} utilities. Search by name, category, or keyword.`}
+      {omitHeader ? null : (
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <h1 className="font-display text-[32px] tracking-[-0.5px] sm:text-[40px]">{title}</h1>
+            <p className="mt-2 max-w-2xl leading-[1.65] text-[var(--body)]">
+              {description ?? `${tools.length} utilities. Search by name, category, or keyword.`}
+            </p>
+            <TitleTrustRow className="mt-4" />
+          </div>
+          <p className="text-sm text-[var(--muted-ink)]">
+            {tools.length} result{tools.length === 1 ? "" : "s"}
           </p>
-          <TitleTrustRow className="mt-4" />
         </div>
-        <p className="text-sm text-[var(--muted-ink)]">
-          {tools.length} result{tools.length === 1 ? "" : "s"}
-        </p>
-      </div>
+      )}
 
-      <div className="mt-8">
+      <div className={omitHeader ? "mt-0" : "mt-8"}>
         <CatalogStickySearch value={query} onChange={setQuery} placeholder="Search by name, keyword, or task…">
           <CategoryChips value={category} onChange={onChip} />
         </CatalogStickySearch>

@@ -404,12 +404,16 @@ export function getToolSeo(tool: ToolSeoSource): ToolSeoRecord {
           },
         ];
 
+  const rawDescription =
+    tool.metaDescription ??
+    `${tool.shortDescription.replace(/\.\s*$/, "")}. Free ${tool.name} in your browser on ${SITE.name}. No signup.`;
+
   return {
     slug: tool.slug,
     category: tool.category,
     title: tool.metaTitle ?? defaultTitle(tool.name),
     h1: tool.heading ?? `${tool.name} Online`,
-    description: clipDescription(tool.metaDescription ?? tool.shortDescription),
+    description: clipDescription(rawDescription),
     keywords: tool.keywords,
     schemaCategory: schemaCategoryFor(tool.category),
     howToSteps: defaultHowTo(tool.name, fileUpload),

@@ -6,6 +6,8 @@ import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { CategoryJsonLd } from "@/components/seo/category-json-ld";
 import { FeatureBanner } from "@/components/tools/feature-banner";
 import { ToolGridSkeleton } from "@/components/tools/tool-skeleton";
+import { TitleTrustRow } from "@/components/layout/title-trust-row";
+import { ToolLinkIndex } from "@/components/tools/tool-link-index";
 import { ToolsExplorer } from "@/components/tools/tools-explorer";
 import { buildMetadata } from "@/lib/seo";
 import { CATEGORIES, getCategory, getToolsByCategory } from "@/lib/tools/catalog";
@@ -58,13 +60,19 @@ export default function CategoryPage({ params }: { params: Params }) {
         tone="cream"
       />
       <AdRegion name="categoryMid" className="mb-8 mt-0" />
-      <Suspense fallback={<ToolGridSkeleton count={6} />}>
-        <ToolsExplorer
-          initialCategory={category.id}
-          title={`Free ${category.label} Online`}
-          description={`${category.description} ${count} tools in this category.`}
-        />
-      </Suspense>
+      <h1 className="font-display text-[32px] tracking-[-0.5px] sm:text-[40px]">
+        Free {category.label} Online
+      </h1>
+      <p className="mt-2 max-w-2xl leading-[1.65] text-[var(--body)]">
+        {category.description} {count} tools in this category.
+      </p>
+      <TitleTrustRow className="mt-4" />
+      <div className="mt-8">
+        <Suspense fallback={<ToolGridSkeleton count={6} />}>
+          <ToolsExplorer initialCategory={category.id} omitHeader />
+        </Suspense>
+      </div>
+      <ToolLinkIndex tools={tools} heading={`All ${category.label}`} />
     </div>
   );
 }
