@@ -1,3 +1,4 @@
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import { ArrowRight, Lock, ShieldCheck, Sparkles, UserRoundX } from "lucide-react";
 import { GradientBackground } from "@/components/brand/gradient-background";
@@ -7,7 +8,12 @@ import { HeroSearch } from "@/components/search/hero-search";
 import { ToolGrid } from "@/components/tools/tool-grid";
 import { Button } from "@/components/ui/button";
 import { SITE } from "@/lib/site";
-import { getAllTools, getPopularTools } from "@/lib/tools/catalog";
+import { CATEGORIES, getAllTools, getPopularTools } from "@/lib/tools/catalog";
+
+const HeroGlobe = dynamic(
+  () => import("@/components/brand/hero-globe").then((mod) => mod.HeroGlobe),
+  { ssr: false },
+);
 
 const QUICK_ACTIONS = [
   { label: "Compress PDF", href: "/tools/pdf/compress-pdf" },
@@ -23,14 +29,15 @@ export default function HomePage() {
 
   return (
     <div>
-      <section className="relative flex min-h-[70svh] flex-col justify-center py-12 sm:py-14">
+      <section className="relative isolate flex min-h-[70svh] flex-col justify-center overflow-hidden py-12 sm:py-14">
         <GradientBackground />
+        <HeroGlobe />
         <div className="relative z-20 mx-auto w-full max-w-[1200px] px-4 text-center sm:px-6">
           <p className="mb-3 text-[12px] font-medium uppercase tracking-[1.5px] text-[var(--muted-ink)]">
             {SITE.positioning}
           </p>
-          <h1 className="mx-auto max-w-4xl font-display text-[32px] font-semibold leading-[1.05] tracking-[-1.5px] text-ink sm:text-[48px] lg:max-w-none lg:whitespace-nowrap lg:text-[56px]">
-            The tools you need. All in one place.
+          <h1 className="mx-auto max-w-4xl font-display text-[32px] font-semibold leading-[1.05] tracking-[-1.5px] text-ink sm:text-[48px] lg:text-[56px]">
+            Free In-Browser Online Tools &amp; File Utilities
           </h1>
           <p className="mx-auto mt-4 max-w-2xl text-[16px] font-normal leading-[1.65] text-[var(--body)]">
             Convert, calculate, compress, generate, format and simplify everyday tasks - directly in your browser.
@@ -106,6 +113,29 @@ export default function HomePage() {
               <ArrowRight />
             </Link>
           </Button>
+        </div>
+      </section>
+
+      <section className="max-site pb-12 sm:pb-16" aria-labelledby="categories-heading">
+        <div className="mb-6 text-center">
+          <h2 id="categories-heading" className="font-display text-[32px] font-semibold leading-[1.15] tracking-[-0.5px] sm:text-[36px]">
+            Browse free online tools by category
+          </h2>
+          <p className="mx-auto mt-2 max-w-xl text-[15px] leading-[1.55] text-[var(--body)]">
+            PDF compressors, image utilities, EMI and tax calculators, text tools, and developer formatters — all in the browser.
+          </p>
+        </div>
+        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          {CATEGORIES.map((category) => (
+            <Link
+              key={category.id}
+              href={`/category/${category.id}`}
+              className="rounded-lg border border-[var(--hairline)] bg-surface-soft px-4 py-4 text-left transition-colors duration-150 hover:border-primary"
+            >
+              <p className="font-medium text-ink">{category.label}</p>
+              <p className="mt-1 text-[13px] leading-[1.5] text-[var(--body)]">{category.description}</p>
+            </Link>
+          ))}
         </div>
       </section>
 

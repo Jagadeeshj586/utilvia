@@ -25,7 +25,8 @@ Source of truth: cream + coral + dark. Warm humanist AI aesthetic — not cool b
 ## Hero atmosphere
 
 - Light cream hero (`#faf9f5`), not dark charcoal
-- Coral-dominant blurred gradient clouds + amber + tiny teal
-- Slow independent CSS transforms only; respect `prefers-reduced-motion`
-- Content z-10, gradients z-0, vignette z-1, `pointer-events: none`
+- Soft mesh at the bottom: peach `#f4d0c5` left, lavender `#d6cbec` right, fading up into cream
+- Centered geodesic globe: coral wireframe + coral particles on cream (no neon green)
+- Slow CSS transforms / canvas rotate; respect `prefers-reduced-motion`
+- Content z-20, globe z-1, gradients z-0, vignette z-1, `pointer-events: none`
 - Headline/body stay ink on cream for contrast

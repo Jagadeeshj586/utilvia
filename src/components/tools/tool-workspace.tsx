@@ -1,17 +1,21 @@
 import type { ReactNode } from "react";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { TitleTrustRow } from "@/components/layout/title-trust-row";
+import { ToolSeoContent } from "@/components/seo/tool-seo-content";
 import { PrivacyBadge } from "@/components/tools/privacy-badge";
 import { ToolCard } from "@/components/tools/tool-card";
 import { RecentsTracker, ToolSaveButton } from "@/components/tools/tool-save-button";
+import type { ToolSeoRecord } from "@/config/tools";
 import { getCategory, getRelatedTools, toolId, type ToolDefinition } from "@/lib/tools/catalog";
 import { CATEGORY_STYLES, getToolIcon } from "@/lib/tools/icons";
 
 export function ToolWorkspace({
   tool,
+  seo,
   children,
 }: {
   tool: ToolDefinition;
+  seo?: ToolSeoRecord;
   children: ReactNode;
 }) {
   const id = toolId(tool);
@@ -19,7 +23,6 @@ export function ToolWorkspace({
   const category = getCategory(tool.category);
   const Icon = getToolIcon(tool.icon);
   const style = CATEGORY_STYLES[tool.category];
-  const faqs = tool.faqs ?? [];
 
   return (
     <div className="max-site py-8 sm:py-10">
@@ -27,9 +30,8 @@ export function ToolWorkspace({
       <Breadcrumbs
         items={[
           { href: "/", label: "Home" },
-          { href: "/tools", label: "Tools" },
           { href: `/category/${tool.category}`, label: category?.label ?? tool.category },
-          { label: tool.name },
+          { label: seo?.h1 ?? tool.heading ?? tool.name },
         ]}
       />
 
@@ -40,7 +42,7 @@ export function ToolWorkspace({
               <Icon className="h-5 w-5" />
             </span>
             <h1 className="font-display text-[32px] leading-tight tracking-[-0.5px] sm:text-[40px]">
-              {tool.heading ?? tool.name}
+              {seo?.h1 ?? tool.heading ?? tool.name}
             </h1>
           </div>
           <p className="text-base leading-[1.65] text-[var(--body)]">{tool.longDescription}</p>
@@ -58,40 +60,28 @@ export function ToolWorkspace({
 
       <section className="rounded-lg border border-[var(--hairline)] bg-canvas p-5 sm:p-6">{children}</section>
 
-      <section className="mt-10">
-        <h2 className="font-display text-[22px] tracking-[-0.3px]">About {tool.name}</h2>
-        <div className="mt-4 space-y-4 text-sm leading-[1.65] text-[var(--body)]">
-          {(tool.about?.paragraphs ?? []).map((paragraph) => (
-            <p key={paragraph}>{paragraph}</p>
-          ))}
-          {tool.about?.features?.length ? (
-            <div>
-              <p className="mb-2 font-medium text-ink">Key features</p>
-              <ul className="list-disc space-y-1.5 pl-5">
-                {tool.about.features.map((feature) => (
-                  <li key={feature}>{feature}</li>
-                ))}
-              </ul>
-            </div>
-          ) : null}
-        </div>
-      </section>
-
-      {faqs.length ? (
+      {seo ? (
+        <ToolSeoContent seo={seo} localFirst={tool.privacy !== "mixed"} />
+      ) : (
         <section className="mt-10">
-          <h2 className="font-display text-[22px] tracking-[-0.3px]">Frequently Asked Questions</h2>
-          <div className="mt-4 divide-y divide-[var(--hairline)] border-y border-[var(--hairline)]">
-            {faqs.map((faq) => (
-              <details key={faq.question} className="py-4">
-                <summary className="cursor-pointer font-display text-[18px] font-medium leading-snug tracking-[-0.02em] text-ink">
-                  {faq.question}
-                </summary>
-                <p className="mt-3 text-[15px] leading-[1.65] text-[var(--body)]">{faq.answer}</p>
-              </details>
+          <h2 className="font-display text-[22px] tracking-[-0.3px]">About {tool.name}</h2>
+          <div className="mt-4 space-y-4 text-sm leading-[1.65] text-[var(--body)]">
+            {(tool.about?.paragraphs ?? []).map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
             ))}
+            {tool.about?.features?.length ? (
+              <div>
+                <p className="mb-2 font-medium text-ink">Key features</p>
+                <ul className="list-disc space-y-1.5 pl-5">
+                  {tool.about.features.map((feature) => (
+                    <li key={feature}>{feature}</li>
+                  ))}
+                </ul>
+              </div>
+            ) : null}
           </div>
         </section>
-      ) : null}
+      )}
 
       {related.length ? (
         <section className="mt-10">
