@@ -35,9 +35,6 @@ export default function HomePage() {
         <GradientBackground />
         <HeroGlobe />
         <div className="relative z-20 mx-auto w-full max-w-[1200px] px-4 text-center sm:px-6">
-          <p className="mb-3 text-[12px] font-medium uppercase tracking-[1.5px] text-[var(--muted-ink)]">
-            {SITE.positioning}
-          </p>
           <h1 className="mx-auto max-w-4xl font-display text-[32px] font-semibold leading-[1.05] tracking-[-1.5px] text-ink sm:text-[48px] lg:text-[56px]">
             Free Online Tools to Compress, Convert, Edit &amp; Manage Files
           </h1>
