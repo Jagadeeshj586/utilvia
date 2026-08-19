@@ -5,6 +5,7 @@ import { GradientBackground } from "@/components/brand/gradient-background";
 import { TrustBar } from "@/components/layout/trust-bar";
 import { TitleTrustRow } from "@/components/layout/title-trust-row";
 import { HeroSearch } from "@/components/search/hero-search";
+import { CategoryCard } from "@/components/tools/category-card";
 import { ToolGrid } from "@/components/tools/tool-grid";
 import { Button } from "@/components/ui/button";
 import { SITE } from "@/lib/site";
@@ -126,16 +127,14 @@ export default function HomePage() {
             PDF compressors, image utilities, EMI and tax calculators, text tools, and developer formatters — all in the browser.
           </p>
         </div>
-        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {CATEGORIES.map((category) => (
-            <Link
+            <CategoryCard
               key={category.id}
-              href={`/category/${category.id}`}
-              className="rounded-lg border border-[var(--hairline)] bg-surface-soft px-4 py-4 text-left transition-colors duration-150 hover:border-primary"
-            >
-              <p className="font-medium text-ink">{category.label}</p>
-              <p className="mt-1 text-[13px] leading-[1.5] text-[var(--body)]">{category.description}</p>
-            </Link>
+              id={category.id}
+              label={category.label}
+              description={category.description}
+            />
           ))}
         </div>
       </section>
