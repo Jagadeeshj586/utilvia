@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "seo:audit": "npx tsx src/scripts/seo-audit.ts",
     "test:sip": "npx tsx --test src/lib/calculators/sip.test.ts",
     "test:password": "npx tsx --test src/lib/security/password.test.ts",
     "test:color": "npx tsx --test src/lib/color/conversion.test.ts",

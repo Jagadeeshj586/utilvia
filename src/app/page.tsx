@@ -10,7 +10,25 @@ import { CategoryCard } from "@/components/tools/category-card";
 import { ToolGrid } from "@/components/tools/tool-grid";
 import { Button } from "@/components/ui/button";
 import { SITE } from "@/lib/site";
+import { buildMetadata } from "@/lib/seo";
 import { CATEGORIES, getAllTools, getPopularTools } from "@/lib/tools/catalog";
+
+const toolCount = getAllTools().length;
+
+export const metadata = buildMetadata({
+  title: `Free Online Tools & File Utilities | ${SITE.name}`,
+  description: `Use ${toolCount}+ free online tools for PDFs, images, documents, calculators, conversions and more. Fast, private and browser-based with no signup.`,
+  path: "/",
+  absoluteTitle: true,
+  keywords: [
+    "free online tools",
+    "pdf tools",
+    "image compressor",
+    "online calculators",
+    "file converter",
+    "browser based tools",
+  ],
+});
 
 const HeroGlobe = dynamic(
   () => import("@/components/brand/hero-globe").then((mod) => mod.HeroGlobe),
@@ -27,7 +45,6 @@ const QUICK_ACTIONS = [
 
 export default function HomePage() {
   const popular = getPopularTools().slice(0, 12);
-  const toolCount = getAllTools().length;
 
   return (
     <div>

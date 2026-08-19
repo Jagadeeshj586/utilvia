@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Newsreader } from "next/font/google";
 import { AdSenseScript } from "@/components/ads/adsense-script";
+import { SiteJsonLd } from "@/components/seo/site-json-ld";
 import { Footer } from "@/components/layout/footer";
 import { Header } from "@/components/layout/header";
 import { AppProviders } from "@/components/providers/app-providers";
@@ -20,10 +21,11 @@ const display = Newsreader({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
   title: {
-    default: `${SITE.name} - ${SITE.tagline}`,
-    template: `%s - ${SITE.name}`,
+    default: `Free Online Tools & File Utilities | ${SITE.name}`,
+    template: `%s | ${SITE.name}`,
   },
-  description: SITE.description,
+  description:
+    "Use 130+ free online tools for PDFs, images, documents, calculators, conversions and more. Fast, private and browser-based with no signup.",
   keywords: [
     "online tools",
     "pdf compress",
@@ -80,6 +82,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
             <main className="flex-1">{children}</main>
             <Footer />
           </div>
+          <SiteJsonLd />
           <DeferredMetrics gaId={gaId} />
           <AdSenseScript />
         </AppProviders>

@@ -1,13 +1,14 @@
-import type { Metadata } from "next";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { TitleTrustRow } from "@/components/layout/title-trust-row";
+import { buildMetadata } from "@/lib/seo";
 import { SITE } from "@/lib/site";
 
-export const metadata: Metadata = {
+export const metadata = buildMetadata({
   title: "FAQ",
-  description: `Common questions about ${SITE.name} - privacy, pricing, and how tools work.`,
-};
+  description: `Common questions about ${SITE.name} — privacy, pricing, and how browser-based tools work.`,
+  path: "/faq",
+});
 
 const FAQS = [
   {
@@ -33,8 +34,19 @@ const FAQS = [
 ];
 
 export default function FaqPage() {
+  const faqLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: FAQS.map((item) => ({
+      "@type": "Question",
+      name: item.q,
+      acceptedAnswer: { "@type": "Answer", text: item.a },
+    })),
+  };
+
   return (
     <article className="mx-auto max-w-3xl px-4 py-10 sm:px-6">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }} />
       <Breadcrumbs items={[{ href: "/", label: "Home" }, { label: "FAQ" }]} />
       <h1 className="font-display text-[32px] tracking-[-0.5px] sm:text-[36px]">FAQ</h1>
       <TitleTrustRow className="mt-4" />

@@ -1,13 +1,15 @@
-import type { Metadata } from "next";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
+import { buildMetadata } from "@/lib/seo";
 import { TitleTrustRow } from "@/components/layout/title-trust-row";
 import { ToolGrid } from "@/components/tools/tool-grid";
 import { getPopularTools } from "@/lib/tools/catalog";
 
-export const metadata: Metadata = {
-  title: "Popular Tools",
-  description: "The Utilvia utilities people open every day - PDF compress, image compress, EMI, JSON, and more.",
-};
+export const metadata = buildMetadata({
+  title: "Popular Free Online Tools",
+  description:
+    "The Utilvia utilities people open every day — PDF compress, image compress, EMI, JSON formatter, and more. Free, in your browser.",
+  path: "/popular",
+});
 
 export default function PopularPage() {
   const tools = getPopularTools();

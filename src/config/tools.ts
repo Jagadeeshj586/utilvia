@@ -76,7 +76,7 @@ function clipDescription(text: string) {
 }
 
 function defaultTitle(name: string) {
-  return `${name} Online – Free & In-Browser | ${SITE.name}`;
+  return `${name} Online Free | ${SITE.name}`;
 }
 
 export const TOOL_SEO: Record<string, ToolSeoRecord> = {
@@ -204,6 +204,174 @@ export const TOOL_SEO: Record<string, ToolSeoRecord> = {
       {
         question: "Is the image compressor free?",
         answer: "Yes. It is free on Utilvia, with no signup.",
+      },
+    ],
+  },
+  "pdf/merge-pdf": {
+    slug: "merge-pdf",
+    category: "pdf",
+    title: "Merge PDF Files Online | Utilvia",
+    h1: "Merge PDF Online",
+    description:
+      "Combine multiple PDF files into one document in your browser. Free PDF merger with no signup and no server upload.",
+    keywords: ["merge pdf", "combine pdf", "join pdf", "pdf merger online"],
+    schemaCategory: "UtilitiesApplication",
+    howToSteps: defaultHowTo("PDF Merge", true),
+    faqs: [
+      {
+        question: "Can I merge PDFs for free?",
+        answer: "Yes. PDF Merge on Utilvia is free and runs in your browser.",
+      },
+      {
+        question: "Are my PDFs uploaded?",
+        answer: "No. Files are read locally and merged on this device.",
+      },
+    ],
+  },
+  "pdf/split-pdf": {
+    slug: "split-pdf",
+    category: "pdf",
+    title: "Split PDF Online | Utilvia",
+    h1: "Split PDF Online",
+    description:
+      "Split a PDF into separate pages or extract a page range in your browser. Free, with no signup and no server upload.",
+    keywords: ["split pdf", "extract pdf pages", "pdf splitter online"],
+    schemaCategory: "UtilitiesApplication",
+    howToSteps: defaultHowTo("PDF Split", true),
+    faqs: [
+      {
+        question: "Can I extract specific pages?",
+        answer: "Yes. Split every page or choose a range, then download the result.",
+      },
+      {
+        question: "Does Split PDF upload my file?",
+        answer: "No. Splitting runs in your browser.",
+      },
+    ],
+  },
+  "pdf/pdf-to-jpg": {
+    slug: "pdf-to-jpg",
+    category: "pdf",
+    title: "PDF to JPG Converter Online | Utilvia",
+    h1: "PDF to JPG Online",
+    description:
+      "Convert PDF pages to JPG or PNG in your browser. Free PDF to image conversion with no signup.",
+    keywords: ["pdf to jpg", "pdf to png", "pdf to image", "convert pdf pages"],
+    schemaCategory: "UtilitiesApplication",
+    howToSteps: defaultHowTo("PDF to JPG", true),
+    faqs: [
+      {
+        question: "Can I export PNG as well as JPG?",
+        answer: "Yes. Render pages as JPG or PNG depending on the option you choose.",
+      },
+      {
+        question: "Is conversion done on a server?",
+        answer: "No. Pages are rendered in your browser.",
+      },
+    ],
+  },
+  "developer/json-formatter": {
+    slug: "json-formatter",
+    category: "developer",
+    title: "JSON Formatter & Validator | Utilvia",
+    h1: "JSON Formatter Online",
+    description:
+      "Format and validate JSON online for free. Beautify, minify, and inspect JSON in your browser with no signup.",
+    keywords: ["json formatter", "json validator", "beautify json", "minify json"],
+    schemaCategory: "DeveloperApplication",
+    howToSteps: defaultHowTo("JSON Formatter", false),
+    faqs: [
+      {
+        question: "Does this validate JSON?",
+        answer: "Yes. Invalid JSON is flagged so you can fix syntax before you copy the result.",
+      },
+      {
+        question: "Is my JSON sent to a server?",
+        answer: "No. Formatting and validation run in this tab.",
+      },
+    ],
+  },
+  "text/word-counter": {
+    slug: "word-counter",
+    category: "text",
+    title: "Word Counter Online | Utilvia",
+    h1: "Word Counter Online",
+    description:
+      "Count words, characters, sentences, and reading time instantly with Utilvia's free online word counter.",
+    keywords: ["word counter", "character count", "reading time", "word count online"],
+    schemaCategory: "UtilitiesApplication",
+    howToSteps: defaultHowTo("Word Counter", false),
+    faqs: [
+      {
+        question: "Does the word counter store my text?",
+        answer: "No. Text stays in your browser. Close the tab and it is gone.",
+      },
+      {
+        question: "Is it free?",
+        answer: "Yes. No signup is required.",
+      },
+    ],
+  },
+  "finance/sip-calculator": {
+    slug: "sip-calculator",
+    category: "finance",
+    title: "SIP Calculator | Utilvia",
+    h1: "SIP Calculator Online",
+    description:
+      "Estimate SIP returns, invested amount, and wealth gain in your browser. Free SIP calculator with no signup.",
+    keywords: ["sip calculator", "mutual fund sip", "sip returns", "sip calculator online"],
+    schemaCategory: "FinanceApplication",
+    howToSteps: defaultHowTo("SIP Calculator", false),
+    faqs: [
+      {
+        question: "Is this an official fund quote?",
+        answer: "No. It is an estimate from your inputs. Actual returns depend on the fund and market.",
+      },
+      {
+        question: "Are my numbers stored?",
+        answer: "No. Values stay in this tab.",
+      },
+    ],
+  },
+  "other/qr-code-generator": {
+    slug: "qr-code-generator",
+    category: "other",
+    title: "QR Code Generator | Utilvia",
+    h1: "QR Code Generator Online",
+    description:
+      "Create QR codes for URLs, Wi‑Fi, and vCards in your browser. Free QR generator with no signup.",
+    keywords: ["qr code generator", "wifi qr", "vcard qr", "free qr maker"],
+    schemaCategory: "UtilitiesApplication",
+    howToSteps: defaultHowTo("QR Code Generator", false),
+    faqs: [
+      {
+        question: "Can I download the QR code?",
+        answer: "Yes. Generate the code and save an image to your device.",
+      },
+      {
+        question: "Is generation done online on a server?",
+        answer: "No. The QR is drawn in your browser.",
+      },
+    ],
+  },
+  "other/password-generator": {
+    slug: "password-generator",
+    category: "other",
+    title: "Password Generator | Utilvia",
+    h1: "Password Generator Online",
+    description:
+      "Generate strong random passwords or passphrases in your browser. Free password generator with a strength meter and no signup.",
+    keywords: ["password generator", "strong password", "passphrase generator", "random password"],
+    schemaCategory: "UtilitiesApplication",
+    howToSteps: defaultHowTo("Password Generator", false),
+    faqs: [
+      {
+        question: "Are generated passwords stored?",
+        answer: "No. Passwords are created in your browser and are not sent to Utilvia.",
+      },
+      {
+        question: "Can I make a passphrase instead?",
+        answer: "Yes. Switch to a word-based passphrase if you prefer something memorable.",
       },
     ],
   },

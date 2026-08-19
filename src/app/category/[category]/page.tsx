@@ -6,6 +6,7 @@ import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { FeatureBanner } from "@/components/tools/feature-banner";
 import { ToolGridSkeleton } from "@/components/tools/tool-skeleton";
 import { ToolsExplorer } from "@/components/tools/tools-explorer";
+import { buildMetadata } from "@/lib/seo";
 import { CATEGORIES, getCategory, getToolsByCategory } from "@/lib/tools/catalog";
 
 type Params = { category: string };
@@ -17,10 +18,12 @@ export function generateStaticParams() {
 export function generateMetadata({ params }: { params: Params }): Metadata {
   const category = getCategory(params.category);
   if (!category) return {};
-  return {
-    title: category.label,
-    description: category.description,
-  };
+  const count = getToolsByCategory(category.id).length;
+  return buildMetadata({
+    title: `Free ${category.label} Online`,
+    description: `${category.description} ${count} free ${category.label.toLowerCase()} in your browser — no signup.`,
+    path: `/category/${category.id}`,
+  });
 }
 
 export default function CategoryPage({ params }: { params: Params }) {
@@ -50,7 +53,7 @@ export default function CategoryPage({ params }: { params: Params }) {
       <Suspense fallback={<ToolGridSkeleton count={6} />}>
         <ToolsExplorer
           initialCategory={category.id}
-          title={category.label}
+          title={`Free ${category.label} Online`}
           description={`${category.description} ${count} tools in this category.`}
         />
       </Suspense>

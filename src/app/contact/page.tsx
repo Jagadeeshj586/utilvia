@@ -1,13 +1,14 @@
-import type { Metadata } from "next";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { TitleTrustRow } from "@/components/layout/title-trust-row";
 import { GeneralContactCard, SuggestToolForm } from "@/components/contact/suggest-tool-form";
+import { buildMetadata } from "@/lib/seo";
 import { SITE } from "@/lib/site";
 
-export const metadata: Metadata = {
+export const metadata = buildMetadata({
   title: "Contact & Tool Requests",
   description: `Suggest a new ${SITE.name} tool or get in touch with the team.`,
-};
+  path: "/contact",
+});
 
 export default function ContactPage() {
   return (

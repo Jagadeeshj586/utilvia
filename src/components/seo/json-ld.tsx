@@ -36,16 +36,31 @@ export function ToolJsonLd({
           url: SITE.url,
         },
       },
+      ...(seo.faqs.length
+        ? [
+            {
+              "@type": "FAQPage",
+              "@id": `${url}#faq`,
+              mainEntity: seo.faqs.map((faq) => ({
+                "@type": "Question",
+                name: faq.question,
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: faq.answer,
+                },
+              })),
+            },
+          ]
+        : []),
       {
-        "@type": "FAQPage",
-        "@id": `${url}#faq`,
-        mainEntity: seo.faqs.map((faq) => ({
-          "@type": "Question",
-          name: faq.question,
-          acceptedAnswer: {
-            "@type": "Answer",
-            text: faq.answer,
-          },
+        "@type": "HowTo",
+        "@id": `${url}#howto`,
+        name: `How to use ${seo.h1}`,
+        step: seo.howToSteps.map((item, index) => ({
+          "@type": "HowToStep",
+          position: index + 1,
+          name: item.step,
+          text: item.text,
         })),
       },
       {

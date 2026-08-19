@@ -1,11 +1,12 @@
-import type { Metadata } from "next";
+import { buildMetadata } from "@/lib/seo";
 import { SITE } from "@/lib/site";
 import { TitleTrustRow } from "@/components/layout/title-trust-row";
 
-export const metadata: Metadata = {
+export const metadata = buildMetadata({
   title: "Privacy Policy",
   description: `How ${SITE.name} handles privacy. Most tools process your files in your browser. Contact ${SITE.email}.`,
-};
+  path: "/privacy",
+});
 
 export default function PrivacyPage() {
   return (

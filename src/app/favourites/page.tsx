@@ -7,6 +7,7 @@ import { SITE } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Favourites",
   description: `Your saved ${SITE.name} tools - open them quickly from one page.`,
+  robots: { index: false, follow: true },
 };
 
 export default function FavouritesPage() {

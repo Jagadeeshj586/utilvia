@@ -1,14 +1,15 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { TitleTrustRow } from "@/components/layout/title-trust-row";
+import { buildMetadata } from "@/lib/seo";
 import { SITE } from "@/lib/site";
 import { getAllTools } from "@/lib/tools/catalog";
 
-export const metadata: Metadata = {
-  title: "About",
-  description: `${SITE.name} is a free, privacy-first workspace for everyday PDF, image, calculator, and developer tools.`,
-};
+export const metadata = buildMetadata({
+  title: "About Utilvia",
+  description: `${SITE.name} is a free, privacy-first workspace for everyday PDF, image, calculator, and developer tools. No signup.`,
+  path: "/about",
+});
 
 export default function AboutPage() {
   const toolCount = getAllTools().length;
