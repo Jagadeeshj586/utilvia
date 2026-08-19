@@ -35,7 +35,7 @@ export const REGEX_PRESETS = [
     id: "url",
     label: "URL",
     pattern: String.raw`https?:\/\/[\w.-]+\.[a-z]{2,}[\w\/.-]*`,
-    sample: "Visit https://workutilities.com or http://example.org/docs.",
+    sample: "Visit https://utilvia.net or http://example.org/docs.",
   },
   {
     id: "phone-us",

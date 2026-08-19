@@ -11,16 +11,16 @@ import {
   verifyJwtSignature,
 } from "./decode";
 
-test("parseJwt decodes WorkUtilities demo token", () => {
+test("parseJwt decodes Utilvia demo token", () => {
   const parsed = parseJwt(DEMO_JWT);
   assert.equal(parsed.ok, true);
   if (!parsed.ok) return;
   assert.equal(parsed.header.alg, "HS256");
   assert.equal(parsed.header.typ, "JWT");
   assert.equal(parsed.payload.sub, "demo-user-123");
-  assert.equal(parsed.payload.name, "WorkUtilities Demo");
-  assert.equal(parsed.payload.iss, "workutilities.com");
-  assert.equal(parsed.signaturePart, "lqHZ-_lMyTV36yZ4p8u4-4DOwAnBv5PmcGzkmHXTIqU");
+  assert.equal(parsed.payload.name, "Utilvia Demo");
+  assert.equal(parsed.payload.iss, "utilvia.net");
+  assert.equal(parsed.signaturePart, "EfnPR8mpLnYy4kg2eZ_kXUbodYMiEcssTJpm72-yvAg");
 });
 
 test("splitJwtToken separates header payload signature", () => {
@@ -55,7 +55,7 @@ test("getJwtExpiryStatus marks demo token expired after July 2026", () => {
   assert.equal(status.state, "expired");
 });
 
-test("verifyJwtSignature validates WorkUtilities demo secret", async () => {
+test("verifyJwtSignature validates Utilvia demo secret", async () => {
   const parsed = parseJwt(DEMO_JWT);
   assert.equal(parsed.ok, true);
   if (!parsed.ok) return;

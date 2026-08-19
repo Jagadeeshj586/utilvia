@@ -182,7 +182,7 @@ function tool(input: ToolInput): ToolDefinition {
   const shortDescription = input.short;
   const longDescription =
     input.longDescription ??
-    `${input.short} Runs in your browser like WorkUtilities - no signup, instant results.`;
+    `${input.short} Runs entirely in your browser — no signup, instant results.`;
   const searchText = [input.name, shortDescription, input.category, "ready", ...input.keywords]
     .join(" ")
     .toLowerCase();

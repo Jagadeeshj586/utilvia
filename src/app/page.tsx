@@ -29,7 +29,7 @@ export default function HomePage() {
 
   return (
     <div>
-      <section className="relative isolate flex min-h-[70svh] flex-col justify-center overflow-hidden py-12 sm:py-14">
+      <section className="hero-shell relative isolate flex min-h-[70svh] flex-col justify-center py-12 pb-28 sm:py-14 sm:pb-36">
         <GradientBackground />
         <HeroGlobe />
         <div className="relative z-20 mx-auto w-full max-w-[1200px] px-4 text-center sm:px-6">
@@ -72,7 +72,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="relative z-10 bg-canvas py-12 sm:py-16">
+      <section className="relative z-10 py-12 sm:py-16">
         <div className="max-site">
           <div className="mx-auto max-w-2xl text-center">
             <h2 className="font-display text-[32px] font-semibold leading-[1.1] tracking-[-0.8px] text-ink sm:text-[40px]">
