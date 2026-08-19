@@ -63,7 +63,7 @@ export default function HomePage() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="rounded-full border border-[var(--hairline)] bg-canvas/80 px-3.5 py-1.5 text-[13px] font-medium text-[var(--muted-ink)] transition-colors duration-150 hover:border-primary hover:text-primary dark:bg-surface-soft/80"
+                className="rounded-full border border-[var(--hairline)] bg-canvas px-3.5 py-1.5 text-[13px] font-medium text-[var(--body)] shadow-[0_1px_0_rgba(20,20,19,0.04)] transition-colors duration-150 hover:border-primary hover:text-primary dark:bg-surface-soft"
               >
                 {item.label}
               </Link>

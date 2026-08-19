@@ -73,6 +73,7 @@ export function GradientBackground({ className }: { className?: string }) {
 
   return (
     <div ref={rootRef} className={cn("hero-atmosphere", className)} aria-hidden>
+      <div className="hero-wash" />
       <div className="hero-depth hero-depth-far">
         <span className="hero-orb hero-orb-a" />
         <span className="hero-orb hero-orb-b" />
