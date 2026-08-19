@@ -45,9 +45,6 @@ export const metadata: Metadata = {
     title: SITE.name,
     description: SITE.description,
   },
-  other: {
-    "google-adsense-account": ADSENSE.publisherId,
-  },
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "any" },
@@ -73,6 +70,9 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
 
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <meta name="google-adsense-account" content={ADSENSE.publisherId} />
+      </head>
       <body className={`${sans.variable} ${display.variable} min-h-screen bg-canvas font-sans antialiased`}>
         <AppProviders>
           <div className="flex min-h-screen flex-col">
