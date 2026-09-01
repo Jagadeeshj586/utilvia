@@ -156,21 +156,6 @@
   }
 }
 
-.hero-shell::after {
-  content: "";
-  position: absolute;
-  inset: auto 0 0;
-  height: 16rem;
-  z-index: 15;
-  pointer-events: none;
-  background: linear-gradient(
-    to bottom,
-    transparent 0%,
-    color-mix(in srgb, var(--canvas) 22%, transparent) 45%,
-    var(--canvas) 100%
-  );
-}
-
 .hero-atmosphere {
   position: absolute;
   inset: 0;

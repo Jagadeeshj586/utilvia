@@ -2,7 +2,6 @@ import dynamic from "next/dynamic";
 import Link from "next/link";
 import { ArrowRight, Lock, ShieldCheck, Sparkles, UserRoundX } from "lucide-react";
 import { AdRegion } from "@/components/ads/ad-region";
-import { GradientBackground } from "@/components/brand/gradient-background";
 import { TrustBar } from "@/components/layout/trust-bar";
 import { TitleTrustRow } from "@/components/layout/title-trust-row";
 import { HeroSearch } from "@/components/search/hero-search";
@@ -48,8 +47,7 @@ export default function HomePage() {
 
   return (
     <div>
-      <section className="hero-shell relative isolate flex min-h-[70svh] flex-col justify-center py-12 pb-28 sm:py-14 sm:pb-36">
-        <GradientBackground />
+      <section className="hero-shell relative isolate flex min-h-[70svh] flex-col justify-center bg-canvas py-12 pb-28 sm:py-14 sm:pb-36">
         <HeroGlobe />
         <div className="relative z-20 mx-auto w-full max-w-[1200px] px-4 text-center sm:px-6">
           <h1 className="mx-auto max-w-4xl font-display text-[32px] font-semibold leading-[1.05] tracking-[-1.5px] text-ink sm:text-[48px] lg:text-[56px]">
