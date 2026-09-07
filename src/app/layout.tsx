@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Newsreader } from "next/font/google";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { AdSenseScript } from "@/components/ads/adsense-script";
 import { SiteJsonLd } from "@/components/seo/site-json-ld";
 import { Footer } from "@/components/layout/footer";
@@ -92,6 +93,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
             <Footer />
           </div>
           <SiteJsonLd />
+          <SpeedInsights />
           <DeferredMetrics gaId={gaId} />
           <AdSenseScript />
         </AppProviders>
