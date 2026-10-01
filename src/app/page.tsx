@@ -53,11 +53,11 @@ export default function HomePage() {
         <div className="animate-fade-in opacity-0 [animation-delay:220ms] motion-reduce:translate-y-0 motion-reduce:animate-none motion-reduce:opacity-100">
           <TitleTrustRow align="center" />
         </div>
-        <div className="mt-6 animate-fade-in opacity-0 [animation-delay:300ms] motion-reduce:translate-y-0 motion-reduce:animate-none motion-reduce:opacity-100">
-          <p className="mb-3 text-[14px] font-medium text-[var(--muted-ink)]">What do you need to do?</p>
+        <div className="animate-fade-in opacity-0 [animation-delay:300ms] motion-reduce:translate-y-0 motion-reduce:animate-none motion-reduce:opacity-100">
+          <p className="mb-4 text-[14px] font-medium text-[var(--muted-ink)]">What do you need to do?</p>
           <HeroSearch className="relative z-30" />
         </div>
-        <div className="mt-4 flex flex-wrap items-center justify-center gap-2 animate-fade-in opacity-0 [animation-delay:380ms] motion-reduce:translate-y-0 motion-reduce:animate-none motion-reduce:opacity-100">
+        <div className="flex flex-wrap items-center justify-center gap-2.5 animate-fade-in opacity-0 [animation-delay:380ms] motion-reduce:translate-y-0 motion-reduce:animate-none motion-reduce:opacity-100">
           {QUICK_ACTIONS.map((item) => (
             <Link
               key={item.href}

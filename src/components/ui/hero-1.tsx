@@ -64,12 +64,12 @@ export function Hero({
           {title}
         </h1>
 
-        <p className="mx-auto mt-4 max-w-3xl animate-fade-in text-[16px] font-normal leading-[1.65] text-[var(--body)] opacity-0 [animation-delay:80ms] motion-reduce:translate-y-0 motion-reduce:animate-none motion-reduce:opacity-100">
+        <p className="mx-auto mt-5 max-w-3xl animate-fade-in text-[16px] font-normal leading-[1.65] text-[var(--body)] opacity-0 [animation-delay:80ms] motion-reduce:translate-y-0 motion-reduce:animate-none motion-reduce:opacity-100 sm:mt-6">
           {subtitle}
         </p>
 
         {(ctaLabel || secondaryCtaLabel) && (
-          <div className="mt-6 flex flex-wrap items-center justify-center gap-3 animate-fade-in opacity-0 [animation-delay:140ms] motion-reduce:translate-y-0 motion-reduce:animate-none motion-reduce:opacity-100">
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-3 animate-fade-in opacity-0 [animation-delay:140ms] motion-reduce:translate-y-0 motion-reduce:animate-none motion-reduce:opacity-100 sm:mt-10">
             {ctaLabel ? (
               <Button asChild className="h-10 rounded-md px-5 text-[14px] font-medium">
                 <Link href={ctaHref}>
@@ -86,7 +86,7 @@ export function Hero({
           </div>
         )}
 
-        {children ? <div className="mt-6 space-y-0">{children}</div> : null}
+        {children ? <div className="mt-8 flex flex-col gap-8 sm:mt-10 sm:gap-10">{children}</div> : null}
       </div>
     </section>
   );
