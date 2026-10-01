@@ -41,7 +41,7 @@ export function Hero({
     <section
       id="hero"
       className={cn(
-        "hero-shell relative isolate mx-auto flex w-full min-h-[70svh] flex-col justify-center overflow-hidden bg-canvas px-4 py-12 pb-28 text-center sm:px-6 sm:py-14 sm:pb-36",
+        "hero-shell relative isolate mx-auto flex w-full min-h-[70svh] flex-col justify-center overflow-hidden bg-canvas px-4 py-12 pb-12 text-center sm:px-6 sm:py-14 sm:pb-16",
         className,
       )}
     >
