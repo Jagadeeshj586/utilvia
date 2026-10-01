@@ -3,6 +3,7 @@
 import type { ReactNode } from "react";
 import Link from "next/link";
 import { ArrowRight, ChevronRight } from "lucide-react";
+import { TitleTrustRow } from "@/components/layout/title-trust-row";
 import { Button } from "@/components/ui/button";
 import { ShaderBackground } from "@/components/ui/mesh-portfolio";
 import { cn } from "@/lib/utils";
@@ -16,6 +17,7 @@ interface HeroProps {
   ctaHref?: string;
   secondaryCtaLabel?: string;
   secondaryCtaHref?: string;
+  showTrustRow?: boolean;
   decoration?: ReactNode;
   children?: ReactNode;
   className?: string;
@@ -30,6 +32,7 @@ export function Hero({
   ctaHref = "#",
   secondaryCtaLabel,
   secondaryCtaHref,
+  showTrustRow = true,
   decoration,
   children,
   className,
@@ -51,42 +54,54 @@ export function Hero({
       {decoration}
 
       <div className="relative z-20 mx-auto w-full max-w-[1200px]">
-        {eyebrow ? (
-          <Link href={eyebrowHref} className="group inline-flex">
-            <span className="mx-auto flex w-fit items-center justify-center rounded-full border border-[var(--hairline)] bg-surface-soft px-5 py-2 text-[12px] font-medium uppercase tracking-[0.06em] text-[var(--muted-ink)]">
-              {eyebrow}
-              <ChevronRight className="ml-2 inline h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-            </span>
-          </Link>
+        {/* Intro block: title, subtitle, CTAs, trust — one composition */}
+        <div className="flex flex-col items-center">
+          {eyebrow ? (
+            <Link href={eyebrowHref} className="group mb-5 inline-flex">
+              <span className="mx-auto flex w-fit items-center justify-center rounded-full border border-[var(--hairline)] bg-surface-soft px-5 py-2 text-[12px] font-medium uppercase tracking-[0.06em] text-[var(--muted-ink)]">
+                {eyebrow}
+                <ChevronRight className="ml-2 inline h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+              </span>
+            </Link>
+          ) : null}
+
+          <h1 className="mx-auto max-w-4xl animate-fade-in font-display text-[32px] font-semibold leading-[1.05] tracking-[-1.5px] text-ink opacity-0 motion-reduce:translate-y-0 motion-reduce:animate-none motion-reduce:opacity-100 sm:text-[48px] lg:text-[56px]">
+            {title}
+          </h1>
+
+          <p className="mx-auto mt-4 max-w-3xl animate-fade-in text-[16px] font-normal leading-[1.65] text-[var(--body)] opacity-0 [animation-delay:80ms] motion-reduce:translate-y-0 motion-reduce:animate-none motion-reduce:opacity-100">
+            {subtitle}
+          </p>
+
+          {(ctaLabel || secondaryCtaLabel) && (
+            <div className="mt-6 flex flex-wrap items-center justify-center gap-3 animate-fade-in opacity-0 [animation-delay:140ms] motion-reduce:translate-y-0 motion-reduce:animate-none motion-reduce:opacity-100">
+              {ctaLabel ? (
+                <Button asChild className="h-10 rounded-md px-5 text-[14px] font-medium">
+                  <Link href={ctaHref}>
+                    {ctaLabel}
+                    <ArrowRight />
+                  </Link>
+                </Button>
+              ) : null}
+              {secondaryCtaLabel && secondaryCtaHref ? (
+                <Button asChild variant="outline" className="h-10 rounded-md px-5 text-[14px] font-medium">
+                  <Link href={secondaryCtaHref}>{secondaryCtaLabel}</Link>
+                </Button>
+              ) : null}
+            </div>
+          )}
+
+          {showTrustRow ? (
+            <div className="mt-5 animate-fade-in opacity-0 [animation-delay:200ms] motion-reduce:translate-y-0 motion-reduce:animate-none motion-reduce:opacity-100">
+              <TitleTrustRow align="center" />
+            </div>
+          ) : null}
+        </div>
+
+        {/* Secondary block: search / chips */}
+        {children ? (
+          <div className="mt-10 flex flex-col gap-5 sm:mt-12 sm:gap-6">{children}</div>
         ) : null}
-
-        <h1 className="mx-auto max-w-4xl animate-fade-in font-display text-[32px] font-semibold leading-[1.05] tracking-[-1.5px] text-ink opacity-0 motion-reduce:translate-y-0 motion-reduce:animate-none motion-reduce:opacity-100 sm:text-[48px] lg:text-[56px]">
-          {title}
-        </h1>
-
-        <p className="mx-auto mt-5 max-w-3xl animate-fade-in text-[16px] font-normal leading-[1.65] text-[var(--body)] opacity-0 [animation-delay:80ms] motion-reduce:translate-y-0 motion-reduce:animate-none motion-reduce:opacity-100 sm:mt-6">
-          {subtitle}
-        </p>
-
-        {(ctaLabel || secondaryCtaLabel) && (
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-3 animate-fade-in opacity-0 [animation-delay:140ms] motion-reduce:translate-y-0 motion-reduce:animate-none motion-reduce:opacity-100 sm:mt-10">
-            {ctaLabel ? (
-              <Button asChild className="h-10 rounded-md px-5 text-[14px] font-medium">
-                <Link href={ctaHref}>
-                  {ctaLabel}
-                  <ArrowRight />
-                </Link>
-              </Button>
-            ) : null}
-            {secondaryCtaLabel && secondaryCtaHref ? (
-              <Button asChild variant="outline" className="h-10 rounded-md px-5 text-[14px] font-medium">
-                <Link href={secondaryCtaHref}>{secondaryCtaLabel}</Link>
-              </Button>
-            ) : null}
-          </div>
-        )}
-
-        {children ? <div className="mt-8 flex flex-col gap-8 sm:mt-10 sm:gap-10">{children}</div> : null}
       </div>
     </section>
   );
