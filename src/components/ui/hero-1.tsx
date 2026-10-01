@@ -5,7 +5,7 @@ import Link from "next/link";
 import { ArrowRight, ChevronRight } from "lucide-react";
 import { TitleTrustRow } from "@/components/layout/title-trust-row";
 import { Button } from "@/components/ui/button";
-import { ShaderBackground } from "@/components/ui/mesh-portfolio";
+import { ConstellationGrid } from "@/components/ui/constellation-grid";
 import { cn } from "@/lib/utils";
 
 interface HeroProps {
@@ -45,10 +45,10 @@ export function Hero({
         className,
       )}
     >
-      {/* Utilvia cream/coral/amber mesh shader */}
-      <div className="pointer-events-none absolute inset-0 z-0" aria-hidden>
-        <ShaderBackground className="absolute inset-0 h-full w-full" />
-        <div className="absolute inset-0 bg-canvas/65" />
+      {/* Utilvia constellation grid background */}
+      <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden" aria-hidden>
+        <ConstellationGrid mode="background" className="absolute inset-0" />
+        <div className="absolute inset-0 bg-canvas/55" />
       </div>
 
       {decoration}
