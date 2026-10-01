@@ -266,23 +266,23 @@ void main() {
 const UNIFORMS = {
   colors: [
     [250 / 255, 249 / 255, 245 / 255], // --canvas #faf9f5
-    [244 / 255, 208 / 255, 197 / 255], // peach #f4d0c5
-    [204 / 255, 120 / 255, 92 / 255], // --coral #cc785c
-    [232 / 255, 165 / 255, 90 / 255], // --accent-amber #e8a55a
-    [232 / 255, 224 / 255, 210 / 255], // --surface-cream-strong #e8e0d2
-    [204 / 255, 120 / 255, 92 / 255],
-    [244 / 255, 208 / 255, 197 / 255],
+    [247 / 255, 230 / 255, 222 / 255], // soft peach (lightened)
+    [232 / 255, 196 / 255, 182 / 255], // soft coral tint
+    [240 / 255, 214 / 255, 180 / 255], // soft amber tint
+    [245 / 255, 239 / 255, 230 / 255], // soft cream
+    [247 / 255, 230 / 255, 222 / 255],
+    [245 / 255, 239 / 255, 230 / 255],
     [250 / 255, 249 / 255, 245 / 255],
   ] as [number, number, number][],
   colorCount: 5,
   scale: 1.35,
-  intensity: 0.42,
+  intensity: 0.28,
   paramA: 0.28,
-  warp: 0.12,
-  detail: 1.6,
-  contrast: 0.96,
-  brightness: 0.04,
-  saturation: 0.92,
+  warp: 0.1,
+  detail: 1.5,
+  contrast: 0.94,
+  brightness: 0.06,
+  saturation: 0.72,
   hue: 0.0,
   vignette: 0.08,
   blur: 0.002,

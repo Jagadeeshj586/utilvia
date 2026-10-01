@@ -45,7 +45,7 @@ export function Hero({
       {/* Utilvia cream/coral/amber mesh shader */}
       <div className="pointer-events-none absolute inset-0 z-0" aria-hidden>
         <ShaderBackground className="absolute inset-0 h-full w-full" />
-        <div className="absolute inset-0 bg-canvas/35" />
+        <div className="absolute inset-0 bg-canvas/65" />
       </div>
 
       {decoration}
