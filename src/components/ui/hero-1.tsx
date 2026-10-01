@@ -99,9 +99,7 @@ export function Hero({
         </div>
 
         {/* Secondary block: search / chips */}
-        {children ? (
-          <div className="mt-10 flex flex-col gap-5 sm:mt-12 sm:gap-6">{children}</div>
-        ) : null}
+        {children ? <div className="mt-10 sm:mt-12">{children}</div> : null}
       </div>
     </section>
   );
