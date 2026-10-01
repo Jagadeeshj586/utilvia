@@ -4,6 +4,7 @@ import type { ReactNode } from "react";
 import Link from "next/link";
 import { ArrowRight, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { ShaderBackground } from "@/components/ui/mesh-portfolio";
 import { cn } from "@/lib/utils";
 
 interface HeroProps {
@@ -41,11 +42,11 @@ export function Hero({
         className,
       )}
     >
-      {/* Subtle grid — Utilvia hairline tones */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 z-0 h-[560px] w-full opacity-70 bg-[linear-gradient(to_right,var(--hairline)_1px,transparent_1px),linear-gradient(to_bottom,var(--hairline)_1px,transparent_1px)] bg-[size:6rem_5rem] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_110%)]"
-      />
+      {/* Utilvia cream/coral/amber mesh shader */}
+      <div className="pointer-events-none absolute inset-0 z-0" aria-hidden>
+        <ShaderBackground className="absolute inset-0 h-full w-full" />
+        <div className="absolute inset-0 bg-canvas/35" />
+      </div>
 
       {decoration}
 
