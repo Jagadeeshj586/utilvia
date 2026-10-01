@@ -8,6 +8,7 @@ import { HeroSearch } from "@/components/search/hero-search";
 import { CategoryCard } from "@/components/tools/category-card";
 import { ToolGrid } from "@/components/tools/tool-grid";
 import { Button } from "@/components/ui/button";
+import { Hero } from "@/components/ui/hero-1";
 import { SITE } from "@/lib/site";
 import { buildMetadata } from "@/lib/seo";
 import { CATEGORIES, getAllTools, getPopularTools } from "@/lib/tools/catalog";
@@ -47,28 +48,16 @@ export default function HomePage() {
 
   return (
     <div>
-      <section className="hero-shell relative isolate flex min-h-[70svh] flex-col justify-center bg-canvas py-12 pb-28 sm:py-14 sm:pb-36">
-        <HeroGlobe />
-        <div className="relative z-20 mx-auto w-full max-w-[1200px] px-4 text-center sm:px-6">
-          <h1 className="mx-auto max-w-4xl font-display text-[32px] font-semibold leading-[1.05] tracking-[-1.5px] text-ink sm:text-[48px] lg:text-[56px]">
-            Free Online Tools to Compress, Convert, Edit &amp; Manage Files
-          </h1>
-          <p className="mx-auto mt-4 max-w-3xl text-[16px] font-normal leading-[1.65] text-[var(--body)]">
-            {SITE.name} is a free online toolbox with {toolCount}+ fast, private, browser-based tools to compress,
-            convert, edit, and manage your files in seconds. No unnecessary uploads. No complicated software.
-          </p>
-          <TitleTrustRow className="mt-5" align="center" />
-          <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
-            <Button asChild className="h-10 rounded-md px-5 text-[14px] font-medium">
-              <Link href="/tools">
-                Explore All Tools
-                <ArrowRight />
-              </Link>
-            </Button>
-            <Button asChild variant="outline" className="h-10 rounded-md px-5 text-[14px] font-medium">
-              <Link href="/popular">Popular Tools</Link>
-            </Button>
-          </div>
+      <Hero
+        title="Free Online Tools to Compress, Convert, Edit & Manage Files"
+        subtitle={`${SITE.name} is a free online toolbox with ${toolCount}+ fast, private, browser-based tools to compress, convert, edit, and manage your files in seconds. No unnecessary uploads. No complicated software.`}
+        ctaLabel="Explore All Tools"
+        ctaHref="/tools"
+        secondaryCtaLabel="Popular Tools"
+        secondaryCtaHref="/popular"
+        decoration={<HeroGlobe />}
+      >
+          <TitleTrustRow align="center" />
           <div className="mt-6">
             <p className="mb-3 text-[14px] font-medium text-[var(--muted-ink)]">What do you need to do?</p>
             <HeroSearch className="relative z-30" />
@@ -84,8 +73,7 @@ export default function HomePage() {
               </Link>
             ))}
           </div>
-        </div>
-      </section>
+      </Hero>
 
       <AdRegion name="homepageBelowHero" className="relative z-10 mx-auto max-w-[1200px] px-4 sm:px-6" />
 
