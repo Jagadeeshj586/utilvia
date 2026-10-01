@@ -2,7 +2,6 @@ import Link from "next/link";
 import { ArrowRight, Lock, ShieldCheck, Sparkles, UserRoundX } from "lucide-react";
 import { AdRegion } from "@/components/ads/ad-region";
 import { TrustBar } from "@/components/layout/trust-bar";
-import { TitleTrustRow } from "@/components/layout/title-trust-row";
 import { HeroSearch } from "@/components/search/hero-search";
 import { CategoryCard } from "@/components/tools/category-card";
 import { ToolGrid } from "@/components/tools/tool-grid";
@@ -50,11 +49,9 @@ export default function HomePage() {
         secondaryCtaLabel="Popular Tools"
         secondaryCtaHref="/popular"
       >
-          <TitleTrustRow align="center" />
-          <div className="mt-6">
-            <p className="mb-3 text-[14px] font-medium text-[var(--muted-ink)]">What do you need to do?</p>
-            <HeroSearch className="relative z-30" />
-          </div>
+        <div className="flex flex-col items-center animate-fade-in opacity-0 [animation-delay:280ms] motion-reduce:translate-y-0 motion-reduce:animate-none motion-reduce:opacity-100">
+          <p className="mb-3 text-[18px] font-medium text-[var(--muted-ink)] sm:text-[20px]">What do you need to do?</p>
+          <HeroSearch className="relative z-30 w-full" />
           <div className="mt-4 flex flex-wrap items-center justify-center gap-2">
             {QUICK_ACTIONS.map((item) => (
               <Link
@@ -66,6 +63,7 @@ export default function HomePage() {
               </Link>
             ))}
           </div>
+        </div>
       </Hero>
 
       <AdRegion name="homepageBelowHero" className="relative z-10 mx-auto max-w-[1200px] px-4 sm:px-6" />
