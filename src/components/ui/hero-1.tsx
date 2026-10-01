@@ -69,7 +69,7 @@ export function Hero({
         </p>
 
         {(ctaLabel || secondaryCtaLabel) && (
-          <div className="mt-6 flex flex-wrap items-center justify-center gap-3 animate-fade-in opacity-0 [animation-delay:140ms] motion-reduce:animate-none motion-reduce:opacity-100">
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-3 animate-fade-in opacity-0 [animation-delay:140ms] motion-reduce:translate-y-0 motion-reduce:animate-none motion-reduce:opacity-100">
             {ctaLabel ? (
               <Button asChild className="h-10 rounded-md px-5 text-[14px] font-medium">
                 <Link href={ctaHref}>
@@ -86,7 +86,7 @@ export function Hero({
           </div>
         )}
 
-        {children ? <div className="mt-6">{children}</div> : null}
+        {children ? <div className="mt-6 space-y-0">{children}</div> : null}
       </div>
     </section>
   );

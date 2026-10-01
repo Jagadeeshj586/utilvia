@@ -50,22 +50,24 @@ export default function HomePage() {
         secondaryCtaLabel="Popular Tools"
         secondaryCtaHref="/popular"
       >
+        <div className="animate-fade-in opacity-0 [animation-delay:220ms] motion-reduce:translate-y-0 motion-reduce:animate-none motion-reduce:opacity-100">
           <TitleTrustRow align="center" />
-          <div className="mt-6">
-            <p className="mb-3 text-[14px] font-medium text-[var(--muted-ink)]">What do you need to do?</p>
-            <HeroSearch className="relative z-30" />
-          </div>
-          <div className="mt-4 flex flex-wrap items-center justify-center gap-2">
-            {QUICK_ACTIONS.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="rounded-full border border-[var(--hairline)] bg-canvas px-3.5 py-1.5 text-[13px] font-medium text-[var(--body)] shadow-[0_1px_0_rgba(20,20,19,0.04)] transition-colors duration-150 hover:border-primary hover:text-primary dark:bg-surface-soft"
-              >
-                {item.label}
-              </Link>
-            ))}
-          </div>
+        </div>
+        <div className="mt-6 animate-fade-in opacity-0 [animation-delay:300ms] motion-reduce:translate-y-0 motion-reduce:animate-none motion-reduce:opacity-100">
+          <p className="mb-3 text-[14px] font-medium text-[var(--muted-ink)]">What do you need to do?</p>
+          <HeroSearch className="relative z-30" />
+        </div>
+        <div className="mt-4 flex flex-wrap items-center justify-center gap-2 animate-fade-in opacity-0 [animation-delay:380ms] motion-reduce:translate-y-0 motion-reduce:animate-none motion-reduce:opacity-100">
+          {QUICK_ACTIONS.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className="rounded-full border border-[var(--hairline)] bg-canvas px-3.5 py-1.5 text-[13px] font-medium text-[var(--body)] shadow-[0_1px_0_rgba(20,20,19,0.04)] transition-colors duration-150 hover:border-primary hover:text-primary dark:bg-surface-soft"
+            >
+              {item.label}
+            </Link>
+          ))}
+        </div>
       </Hero>
 
       <AdRegion name="homepageBelowHero" className="relative z-10 mx-auto max-w-[1200px] px-4 sm:px-6" />
