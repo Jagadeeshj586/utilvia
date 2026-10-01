@@ -47,12 +47,6 @@ export function Hero({
         className="pointer-events-none absolute inset-0 z-0 h-[560px] w-full opacity-70 bg-[linear-gradient(to_right,var(--hairline)_1px,transparent_1px),linear-gradient(to_bottom,var(--hairline)_1px,transparent_1px)] bg-[size:6rem_5rem] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_110%)]"
       />
 
-      {/* Soft coral radial accent at base */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute left-1/2 top-[calc(100%-90px)] z-0 h-[420px] w-[720px] -translate-x-1/2 rounded-[100%] border border-primary/25 bg-[radial-gradient(closest-side,var(--canvas)_78%,color-mix(in_srgb,var(--coral)_18%,transparent))] animate-fade-up motion-reduce:animate-none lg:top-[calc(100%-140px)] lg:h-[560px] lg:w-[120%]"
-      />
-
       {decoration}
 
       <div className="relative z-20 mx-auto w-full max-w-[1200px]">
