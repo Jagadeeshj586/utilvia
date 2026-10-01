@@ -1,4 +1,3 @@
-import dynamic from "next/dynamic";
 import Link from "next/link";
 import { ArrowRight, Lock, ShieldCheck, Sparkles, UserRoundX } from "lucide-react";
 import { AdRegion } from "@/components/ads/ad-region";
@@ -30,11 +29,6 @@ export const metadata = buildMetadata({
   ],
 });
 
-const HeroGlobe = dynamic(
-  () => import("@/components/brand/hero-globe").then((mod) => mod.HeroGlobe),
-  { ssr: false },
-);
-
 const QUICK_ACTIONS = [
   { label: "Compress PDF", href: "/tools/pdf/compress-pdf" },
   { label: "Aadhaar Photo Resize", href: "/tools/image/photo-resizer" },
@@ -55,7 +49,6 @@ export default function HomePage() {
         ctaHref="/tools"
         secondaryCtaLabel="Popular Tools"
         secondaryCtaHref="/popular"
-        decoration={<HeroGlobe />}
       >
           <TitleTrustRow align="center" />
           <div className="mt-6">
