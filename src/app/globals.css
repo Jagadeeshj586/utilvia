@@ -182,28 +182,6 @@
   display: none;
 }
 
-.hero-globe {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  display: grid;
-  place-items: center;
-  pointer-events: none;
-  transform: translateY(4%);
-}
-
-.hero-globe canvas {
-  width: min(62vmin, 560px);
-  height: min(62vmin, 560px);
-  display: block;
-  background: transparent;
-  opacity: 0.46;
-}
-
-.dark .hero-globe canvas {
-  opacity: 0.52;
-}
-
 .hero-depth {
   position: absolute;
   inset: -18%;
@@ -493,23 +471,6 @@
     display: none;
   }
 
-  .hero-globe {
-    top: 0;
-    right: 0;
-    left: 0;
-    bottom: auto;
-    height: min(46vw, 360px);
-    align-content: start;
-    place-items: start center;
-    transform: translateY(-6%);
-    padding-top: 0;
-  }
-
-  .hero-globe canvas {
-    width: min(50vw, 360px);
-    height: min(50vw, 360px);
-  }
-
   .hero-veil-a,
   .hero-orb-e,
   .hero-ribbon-a,
@@ -576,16 +537,6 @@
 @media (max-width: 767px) {
   .hero-sheen {
     display: none;
-  }
-
-  .hero-globe {
-    transform: translateY(-8%);
-    padding-top: 0;
-  }
-
-  .hero-globe canvas {
-    width: min(68vmin, 360px);
-    height: min(68vmin, 360px);
   }
 
   .hero-depth-near,
